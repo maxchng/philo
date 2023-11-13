@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 18:00:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/13 15:35:21 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/13 19:03:02 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 # include "sys_headers.h"
 
-size_t	ft_strlen(const char *str);
-char	*ft_strchr(const char *str, int c);
-char	*ft_strtok(char *str, const char *delim);
-char	*ft_strdup(const char *str);
-char	*ft_strjoin(const char *s1, const char *s2, const char *delim);
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	**ft_split(const char *str, const char *delim);
+size_t		ft_strlen(const char *str);
+char		*ft_strchr(const char *str, int c);
+char		*ft_strtok(char *str, const char *delim);
+char		*ft_strdup(const char *str);
+char		*ft_strjoin(const char *s1, const char *s2, const char *delim);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		**ft_split(const char *str, const char *delim);
+long long	ft_atoll(const char *str);
 
 #endif

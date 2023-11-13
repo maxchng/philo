@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:07:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/13 16:57:17 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/13 19:10:08 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ int	main(int argc, char **argv)
 		write_error("[<arg5>]: number_of_times_each_philosopher_must_eat\n");
 		exit(EXIT_FAILURE);
 	}
+	parse_argv(argv);
 }

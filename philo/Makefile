@@ -10,6 +10,7 @@ OBJS_PATH := ./objs/
 
 # Source files
 SRCS := philo.c \
+		parse_argv.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

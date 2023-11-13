@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:00:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/13 14:11:21 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/13 18:26:51 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <unistd.h>
+# include <limits.h>
 
 #endif
