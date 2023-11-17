@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/14 17:04:14 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/17 21:40:39 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 void	write_error(const char *msg);
 
 // parse_argv.c
-void	parse_argv(char **argv);
+void	parse_argv(t_philo_config *config, char **argv);
 
 #endif

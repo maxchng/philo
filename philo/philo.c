@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:07:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/14 17:04:03 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/17 21:44:31 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	write_error(const char *msg)
 
 int	main(int argc, char **argv)
 {
+	t_philo_config	config;
+
 	if (argc != 5 && argc != 6)
 	{
 		write_error("Usage: ./pipex <arg1> <arg2> <arg3> <arg4> [<arg5>]\n");
@@ -29,5 +31,6 @@ int	main(int argc, char **argv)
 		write_error("[<arg5>]: number_of_times_each_philosopher_must_eat\n");
 		exit(EXIT_FAILURE);
 	}
-	parse_argv(argv);
+	config = (t_philo_config){0};
+	parse_argv(&config, argv);
 }
