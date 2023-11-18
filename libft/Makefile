@@ -16,6 +16,7 @@ SRCS := ft_strlen.c \
 		ft_strcmp.c \
 		ft_strncmp.c \
 		ft_split.c \
+		ft_atoi.c \
 		ft_atoll.c
 
 # Object files

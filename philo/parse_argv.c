@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:55:26 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/17 22:40:41 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 17:27:05 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ bool	is_all_digits(const char *token)
 	return (true);
 }
 
-bool	is_in_int_range(const char *token)
+bool	is_non_negative_int(const char *token)
 {
 	long long	value;
 
 	value = ft_atoll(token);
-	return (value >= INT_MIN && value <= INT_MAX);
+	return (value >= 0 && value <= INT_MAX);
 }
 
 bool	is_valid_input(const char *token)
@@ -52,18 +52,26 @@ bool	is_valid_input(const char *token)
 	return (true);
 }
 
+static unsigned long long	convert_ms_to_us(int miliseconds)
+{
+	unsigned long long	microseconds;
+
+	microseconds = miliseconds * 1000;
+	return (microseconds);
+}
+
 void	set_philo_config(t_philo_config *config, char *token, size_t i)
 {
 	if (i == 1)
-		config->number_of_philosophers = ft_atoll(token);
+		config->number_of_philosophers = ft_atoi(token);
 	else if (i == 2)
-		config->time_to_die = ft_atoll(token);
+		config->time_to_die = convert_ms_to_us(ft_atoi(token));
 	else if (i == 3)
-		config->time_to_eat = ft_atoll(token);
+		config->time_to_eat = convert_ms_to_us(ft_atoi(token));
 	else if (i == 4)
-		config->time_to_sleep = ft_atoll(token);
+		config->time_to_sleep = convert_ms_to_us(ft_atoi(token));
 	else if (i == 5)
-		config->number_of_times_to_eat = ft_atoll(token);
+		config->number_of_times_to_eat = ft_atoi(token);
 }
 
 void	parse_argv(t_philo_config *config, char **argv)
