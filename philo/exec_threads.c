@@ -6,18 +6,19 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:10:59 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 22:36:21 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 22:42:33 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-void	philo_instruction(void *arg)
+void	*philo_instructions(void *arg)
 {
 	t_dining_philo	*dp;
 
 	dp = (t_dining_philo *)arg;
 	//
+	pthread_exit(0);
 }
 
 static void	alloc_space_for_philo_n_chopsticks(t_dining_philo *dp)
@@ -55,5 +56,5 @@ void	exec_threads(t_dining_philo *dp)
 		exit(-1);
 	}
 	while (philo_count--)
-		pthread_create(tid++, NULL, philo_instruction, dp);
+		pthread_create(tid++, NULL, philo_instructions, dp);
 }

@@ -32,7 +32,7 @@ INCLUDE_LIBFT := -I$(LIBFT_PATH)includes/
 
 # Locate, and Link flags, for the compiler to find and link the static library
 LDFLAGS := -L$(LIBFT_PATH)
-LDLIBS := -lft
+LDLIBS := -lft -pthread
 
 # Remove command and flags
 RM := rm
