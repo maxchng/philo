@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 17:59:22 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 18:13:17 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 
 # include "sys_headers.h"
 # include "libft.h"
+
+typedef struct s_philo_config
+{
+	int					number_of_philosophers;
+	unsigned long long	time_to_die;
+	unsigned long long	time_to_eat;
+	unsigned long long	time_to_sleep;
+	int					number_of_times_to_eat;
+}	t_philo_config;
 
 // philo.c
 void	write_error(const char *msg);
