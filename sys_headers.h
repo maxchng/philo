@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:00:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 17:25:32 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 18:01:12 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 typedef struct s_philo_config
 {
 	int					number_of_philosophers;
-    unsigned long long	time_to_die;
-    unsigned long long	time_to_eat;
-    unsigned long long	time_to_sleep;
-    int					number_of_times_to_eat;
+	unsigned long long	time_to_die;
+	unsigned long long	time_to_eat;
+	unsigned long long	time_to_sleep;
+	int					number_of_times_to_eat;
 }	t_philo_config;
 
 #endif
