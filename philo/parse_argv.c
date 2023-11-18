@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:55:26 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 17:27:05 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 17:46:42 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	is_valid_input(const char *token)
 		write_error(" is not a whole number\n");
 		return (false);
 	}
-	else if (!is_in_int_range(token))
+	else if (!is_non_negative_int(token))
 	{
 		write_error(token);
 		write_error(" is not in int range\n");
@@ -52,12 +52,9 @@ bool	is_valid_input(const char *token)
 	return (true);
 }
 
-static unsigned long long	convert_ms_to_us(int miliseconds)
+unsigned long long	convert_ms_to_us(int miliseconds)
 {
-	unsigned long long	microseconds;
-
-	microseconds = miliseconds * 1000;
-	return (microseconds);
+	return ((unsigned long long)miliseconds * 1000);
 }
 
 void	set_philo_config(t_philo_config *config, char *token, size_t i)
