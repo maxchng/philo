@@ -6,20 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:10:59 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 22:42:33 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 23:06:24 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
-
-void	*philo_instructions(void *arg)
-{
-	t_dining_philo	*dp;
-
-	dp = (t_dining_philo *)arg;
-	//
-	pthread_exit(0);
-}
 
 static void	alloc_space_for_philo_n_chopsticks(t_dining_philo *dp)
 {
@@ -40,14 +31,39 @@ static void	alloc_space_for_philo_n_chopsticks(t_dining_philo *dp)
 	}
 }
 
+void	*philo_instructions(void *arg)
+{
+	t_dining_philo	*dp;
+
+	dp = (t_dining_philo *)arg;
+	printf("hello there\n");
+	pthread_exit(0);
+}
+
+void	create_threads(t_dining_philo *dp, pthread_t *tid)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < dp->config.number_of_philosophers)
+		pthread_create(&tid[i++], NULL, philo_instructions, dp);
+}
+
+void	join_threads(t_dining_philo *dp, pthread_t *tid)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < dp->config.number_of_philosophers)
+		pthread_join(tid[i++], NULL);
+}
+
 void	exec_threads(t_dining_philo *dp)
 {
 	pthread_t	*tid;
-	size_t		philo_count;
 
 	alloc_space_for_philo_n_chopsticks(dp);
-	philo_count = dp->config.number_of_philosophers;
-	tid = malloc(sizeof(*tid) * philo_count);
+	tid = malloc(sizeof(*tid) * dp->config.number_of_philosophers);
 	if (!tid)
 	{
 		write_error("malloc failed for tid in exec_threads\n");
@@ -55,6 +71,7 @@ void	exec_threads(t_dining_philo *dp)
 		free(dp->chopsticks);
 		exit(-1);
 	}
-	while (philo_count--)
-		pthread_create(tid++, NULL, philo_instructions, dp);
+	create_threads(dp, tid);
+	join_threads(dp, tid);
+	printf("main\n");
 }
