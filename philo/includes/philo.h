@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 20:21:13 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 22:03:57 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ typedef struct s_philo_config
 	size_t				number_of_times_to_eat;
 }	t_philo_config;
 
+typedef struct s_dining_philo
+{
+	size_t			*philosophers;
+	size_t			*chopsticks;
+	t_philo_config	config;
+}	t_dining_philo;
+
 // philo.c
 void	write_error(const char *msg);
 
@@ -41,6 +48,6 @@ void	set_philo_config(t_philo_config *config, char *token, size_t i);
 bool	meets_philo_requirements(t_philo_config *config);
 
 // exec_threads.c
-void	exec_threads(t_philo_config config);
+void	exec_threads(t_dining_philo *dp);
 
 #endif

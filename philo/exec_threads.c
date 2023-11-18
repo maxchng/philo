@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:10:59 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 19:11:37 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 22:36:21 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,46 @@
 
 void	philo_instruction(void *arg)
 {
-	t_philo_config	*config;
+	t_dining_philo	*dp;
 
-	config = (t_philo_config *)arg;
+	dp = (t_dining_philo *)arg;
 	//
 }
 
-void	exec_threads(t_philo_config config)
+static void	alloc_space_for_philo_n_chopsticks(t_dining_philo *dp)
 {
-	pthread_t	*tid;
-	size_t		i;
+	size_t	philo_count;
 
-	tid = malloc(sizeof(*tid) * config.number_of_philosophers);
-	if (!tid)
+	philo_count = dp->config.number_of_philosophers;
+	dp->philosophers = malloc(sizeof(*dp->philosophers) * philo_count);
+	if (!dp->philosophers)
 	{
-		write_error("malloc failed in exec_thread\n");
+		write_error("malloc failed for philosophers in alloc_space\n");
 		exit(-1);
 	}
-	i = 0;
-	while (i < config.number_of_philosophers)
-		pthread_create(&tid[i++], NULL, philo_instruction, &config);
+	dp->chopsticks = malloc(sizeof(*dp->chopsticks) * philo_count);
+	if (!dp->chopsticks)
+	{
+		write_error("malloc failed for chopsticks in alloc_space\n");
+		exit(-1);
+	}
+}
+
+void	exec_threads(t_dining_philo *dp)
+{
+	pthread_t	*tid;
+	size_t		philo_count;
+
+	alloc_space_for_philo_n_chopsticks(dp);
+	philo_count = dp->config.number_of_philosophers;
+	tid = malloc(sizeof(*tid) * philo_count);
+	if (!tid)
+	{
+		write_error("malloc failed for tid in exec_threads\n");
+		free(dp->philosophers);
+		free(dp->chopsticks);
+		exit(-1);
+	}
+	while (philo_count--)
+		pthread_create(tid++, NULL, philo_instruction, dp);
 }
