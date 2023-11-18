@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:00:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 18:13:05 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 20:13:11 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <limits.h>
+# include <pthread.h>
 
 #endif

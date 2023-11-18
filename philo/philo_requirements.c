@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_argv.c                                       :+:      :+:    :+:   */
+/*   philo_requirements.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:55:26 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 20:11:47 by ychng            ###   ########.fr       */
+/*   Created: 2023/11/18 20:11:31 by ychng             #+#    #+#             */
+/*   Updated: 2023/11/18 20:14:57 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-void	parse_argv(t_philo_config *config, char **argv)
+bool	meets_philo_requirements(t_philo_config *config)
 {
-	size_t	i;
-	char	*token;
-
-	i = 1;
-	while (argv[i])
+	if (config->number_of_philosophers == 0)
 	{
-		token = ft_strtok(argv[i], " ");
-		while (token != NULL)
-		{
-			if (!is_valid_input(token))
-				exit(-1);
-			set_philo_config(config, token, i);
-			token = ft_strtok(NULL, " ");
-		}
-		i++;
+		write_error("Number of philosophers must start from 1 to 2147483647\n");
+		return (false);
 	}
-	if (!meets_philo_requirements(config))
-		exit(-1);
+	return (true);
 }

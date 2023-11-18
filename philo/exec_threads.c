@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_argv.c                                       :+:      :+:    :+:   */
+/*   exec_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:55:26 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 20:11:47 by ychng            ###   ########.fr       */
+/*   Created: 2023/11/18 19:10:59 by ychng             #+#    #+#             */
+/*   Updated: 2023/11/18 19:11:37 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-void	parse_argv(t_philo_config *config, char **argv)
+void	philo_instruction(void *arg)
 {
-	size_t	i;
-	char	*token;
+	t_philo_config	*config;
 
-	i = 1;
-	while (argv[i])
+	config = (t_philo_config *)arg;
+	//
+}
+
+void	exec_threads(t_philo_config config)
+{
+	pthread_t	*tid;
+	size_t		i;
+
+	tid = malloc(sizeof(*tid) * config.number_of_philosophers);
+	if (!tid)
 	{
-		token = ft_strtok(argv[i], " ");
-		while (token != NULL)
-		{
-			if (!is_valid_input(token))
-				exit(-1);
-			set_philo_config(config, token, i);
-			token = ft_strtok(NULL, " ");
-		}
-		i++;
-	}
-	if (!meets_philo_requirements(config))
+		write_error("malloc failed in exec_thread\n");
 		exit(-1);
+	}
+	i = 0;
+	while (i < config.number_of_philosophers)
+		pthread_create(&tid[i++], NULL, philo_instruction, &config);
 }

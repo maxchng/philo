@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:07:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 17:48:36 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/18 20:13:46 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ int	main(int argc, char **argv)
 	}
 	config = (t_philo_config){0};
 	parse_argv(&config, argv);
+	exec_threads(config);
 }
