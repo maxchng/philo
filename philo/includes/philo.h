@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 23:28:38 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 23:36:32 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_philo_info
 {
 	size_t			position;
 	size_t			num_of_times_ate;
-	pthread_mutex_t	*forks;
 	t_philo_config	*shared_config;
+	pthread_mutex_t	*shared_forks;
 }	t_philo_info;
 
 // philo.c
