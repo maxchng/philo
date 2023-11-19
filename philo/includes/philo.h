@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 20:10:44 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 23:28:38 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 # include "sys_headers.h"
 # include "libft.h"
-
-typedef struct s_philo_stats
-{
-	pthread_mutex_t	*forks;
-}	t_philo_stats;
 
 typedef struct s_philo_config
 {
@@ -34,7 +29,7 @@ typedef struct s_philo_info
 {
 	size_t			position;
 	size_t			num_of_times_ate;
-	t_philo_stats	*shared_stats;
+	pthread_mutex_t	*forks;
 	t_philo_config	*shared_config;
 }	t_philo_info;
 
