@@ -6,11 +6,34 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 01:21:16 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 02:56:22 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
+
+unsigned long long current_timestamp(void)
+{
+	struct timeval	timestamp;
+
+	gettimeofday(&timestamp, NULL);
+	return (timestamp.tv_usec / 1000ULL);
+}
+
+void	log_activity(t_philo_info *philo, char *activity)
+{
+	unsigned long long	timestamp_ms;
+	size_t				position;
+
+	timestamp_ms = current_timestamp();
+	position = philo->position;
+	if (ft_strcmp(activity, "fork") == 0)
+		printf("%llu %ld has taken a %s\n", timestamp_ms, position, activity);
+	else if (ft_strcmp(activity, "died") == 0)
+		printf("%llu %ld %s\n", timestamp_ms, position, activity);
+	else
+		printf("%llu %ld is %s\n", timestamp_ms, position, activity);
+}
 
 void	acquire_forks(t_philo_info *philo)
 {
@@ -20,9 +43,9 @@ void	acquire_forks(t_philo_info *philo)
 	position = philo->position;
 	num_of_philos = philo->shared_config->num_of_philos;
 	pthread_mutex_lock(&philo->shared_forks[position]);
-	printf("philosophers %ld has taken a fork\n", philo->position);
+	log_activity(philo, "fork");
 	pthread_mutex_lock(&philo->shared_forks[(position + 1) % num_of_philos]);	
-	printf("philosophers %ld has taken a fork\n", philo->position);
+	log_activity(philo, "fork");
 }
 
 void	release_forks(t_philo_info *philo)
@@ -42,10 +65,10 @@ void	*philo_lifecycle(void *arg)
 
 	philo = (t_philo_info *)arg;
 	acquire_forks(philo);
-	printf("philosophers %ld is eating\n", philo->position);
+	log_activity(philo, "eating");
 	usleep(philo->shared_config->time_to_eat);
 	release_forks(philo);
-	printf("philosophers %ld is sleep\n", philo->position);
+	log_activity(philo, "sleeping");
 	usleep(philo->shared_config->time_to_sleep);
 	pthread_exit(0);
 }
