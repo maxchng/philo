@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 18:42:50 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 19:42:38 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_philo_stats
 
 typedef struct s_philo_config
 {
-	size_t				number_of_philosophers;
-	size_t				number_of_times_to_eat;
+	size_t				num_of_philos;
+	size_t				num_of_times_to_eat;
 	unsigned long long	time_to_die;
 	unsigned long long	time_to_eat;
 	unsigned long long	time_to_sleep;
@@ -39,18 +39,15 @@ typedef struct s_philo_info
 }	t_philo_info;
 
 // philo.c
-void	write_error(const char *msg);
+void	write_error(char *msg);
 
 // parse_argv.c
 void	parse_argv(t_philo_config *config, char **argv);
 
 // is_valid_input.c
-bool	is_valid_input(const char *token);
+bool	is_valid_input(char *token, size_t i);
 
-// set_philo_config.c
-void	set_philo_config(t_philo_config *config, char *token, size_t i);
-
-// philo_requirements.c
-bool	meets_philo_requirements(t_philo_config *config);
+// set_config.c
+void	set_config(t_philo_config *config, char *token, size_t i);
 
 #endif

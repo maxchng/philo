@@ -6,13 +6,38 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:55:26 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 20:11:47 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 19:49:46 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-void	parse_argv(t_philo_config *config, char **argv)
+static void	validate_argv(char **argv)
+{
+	size_t	i;
+	char	*token;
+	char	*duplicate;
+
+	i = 1;
+	while (argv[i])
+	{
+		duplicate = ft_strdup(argv[i]);
+		token = ft_strtok(duplicate, " ");
+		while (token)
+		{
+			if (!is_valid_input(token, i))
+			{
+				free(duplicate);
+				exit(-1);
+			}
+			token = ft_strtok(NULL, " ");
+		}
+		free(duplicate);
+		i++;
+	}
+}
+
+static void	update_config(t_philo_config *config, char **argv)
 {
 	size_t	i;
 	char	*token;
@@ -21,15 +46,18 @@ void	parse_argv(t_philo_config *config, char **argv)
 	while (argv[i])
 	{
 		token = ft_strtok(argv[i], " ");
-		while (token != NULL)
+		while (token)
 		{
-			if (!is_valid_input(token))
-				exit(-1);
-			set_philo_config(config, token, i);
+			set_config(config, token, i);
 			token = ft_strtok(NULL, " ");
 		}
 		i++;
 	}
-	if (!meets_philo_requirements(config))
-		exit(-1);
+}
+
+void	parse_argv(t_philo_config *config, char **argv)
+{
+
+	validate_argv(argv);
+	update_config(config, argv);
 }
