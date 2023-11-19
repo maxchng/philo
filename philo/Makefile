@@ -12,7 +12,8 @@ OBJS_PATH := ./objs/
 SRCS := philo.c \
 		parse_argv.c \
 		is_valid_input.c \
-		set_config.c
+		set_config.c \
+		init_philos.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

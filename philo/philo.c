@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:07:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 19:50:37 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 20:10:04 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	write_error(char *msg)
 int	main(int argc, char **argv)
 {
 	t_philo_config	config;
+	t_philo_info	*philos;
 
 	if (argc != 5 && argc != 6)
 	{
@@ -32,4 +33,5 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	parse_argv(&config, argv);
+	philos = init_philos(&config);
 }

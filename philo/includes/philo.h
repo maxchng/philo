@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 19:42:38 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 20:10:44 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,18 @@ typedef struct s_philo_info
 }	t_philo_info;
 
 // philo.c
-void	write_error(char *msg);
+void			write_error(char *msg);
 
 // parse_argv.c
-void	parse_argv(t_philo_config *config, char **argv);
+void			parse_argv(t_philo_config *config, char **argv);
 
 // is_valid_input.c
-bool	is_valid_input(char *token, size_t i);
+bool			is_valid_input(char *token, size_t i);
 
 // set_config.c
-void	set_config(t_philo_config *config, char *token, size_t i);
+void			set_config(t_philo_config *config, char *token, size_t i);
+
+// init_philos.c
+t_philo_info	*init_philos(t_philo_config *config);
 
 #endif
