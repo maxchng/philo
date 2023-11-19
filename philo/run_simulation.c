@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 02:56:22 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 03:24:22 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,26 @@ void	release_forks(t_philo_info *philo)
 	pthread_mutex_unlock(&philo->shared_forks[(position + 1) % num_of_philos]);
 }
 
+unsigned long long	time_since_last_meal(struct timeval last_meal_time)
+{
+	return (current_timestamp() - (last_meal_time.tv_usec / 1000ULL));
+}
+
 void	*philo_lifecycle(void *arg)
 {
 	t_philo_info	*philo;
+	size_t			time_to_die;
+	struct timeval	last_meal_time;
 
 	philo = (t_philo_info *)arg;
+	time_to_die = philo->shared_config->time_to_die;
+	gettimeofday(&last_meal_time, NULL);
 	acquire_forks(philo);
+	if (time_since_last_meal(last_meal_time) > (unsigned long long)time_to_die)
+	{
+		log_activity(philo, "died");
+		pthread_exit(-1);		
+	}
 	log_activity(philo, "eating");
 	usleep(philo->shared_config->time_to_eat);
 	release_forks(philo);
