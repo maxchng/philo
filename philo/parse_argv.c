@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:55:26 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 19:49:46 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 23:31:23 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	update_config(t_philo_config *config, char **argv)
 
 void	parse_argv(t_philo_config *config, char **argv)
 {
-
 	validate_argv(argv);
 	update_config(config, argv);
 }
