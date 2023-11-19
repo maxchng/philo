@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 20:01:05 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 20:10:12 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/19 20:56:10 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_philo_info	*init_philos(t_philo_config *config)
 	{
 		philos[i] = (t_philo_info){0};
 		philos[i].shared_config = config;
+		i++;
 	}
 	return (philos);
 }
