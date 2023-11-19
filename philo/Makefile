@@ -13,8 +13,7 @@ SRCS := philo.c \
 		parse_argv.c \
 		is_valid_input.c \
 		set_philo_config.c \
-		philo_requirements.c \
-		exec_threads.c
+		philo_requirements.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
