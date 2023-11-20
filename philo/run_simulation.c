@@ -6,13 +6,13 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 03:24:22 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 17:31:12 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-unsigned long long current_timestamp(void)
+unsigned long long	current_timestamp(void)
 {
 	struct timeval	timestamp;
 
@@ -44,7 +44,7 @@ void	acquire_forks(t_philo_info *philo)
 	num_of_philos = philo->shared_config->num_of_philos;
 	pthread_mutex_lock(&philo->shared_forks[position]);
 	log_activity(philo, "fork");
-	pthread_mutex_lock(&philo->shared_forks[(position + 1) % num_of_philos]);	
+	pthread_mutex_lock(&philo->shared_forks[(position + 1) % num_of_philos]);
 	log_activity(philo, "fork");
 }
 
@@ -77,7 +77,7 @@ void	*philo_lifecycle(void *arg)
 	if (time_since_last_meal(last_meal_time) > (unsigned long long)time_to_die)
 	{
 		log_activity(philo, "died");
-		pthread_exit(-1);		
+		pthread_exit(-1);
 	}
 	log_activity(philo, "eating");
 	usleep(philo->shared_config->time_to_eat);
