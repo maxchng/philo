@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 22:53:28 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 22:59:16 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@
 // 	pthread_exit(0);
 // }
 
-void	acquire_forks(t_philo_info *philo)
+void	acquire_forks(t_philo_info *philo, struct timeval start_time)
 {
 	size_t	pos;
 	size_t	num_of_philos;
@@ -97,7 +97,16 @@ void	acquire_forks(t_philo_info *philo)
 	if (philo->position % 2 == 0)
 	{
 		pthread_mutex_lock(&philo->shared_forks[pos]);
+		write_activity(philo, "fork", start_time);
 		pthread_mutex_lock(&philo->shared_forks[(pos + 1) % num_of_philos]);
+		write_activity(philo, "fork", start_time);
+	}
+	else
+	{
+		pthread_mutex_lock(&philo->shared_forks[(pos + 1) % num_of_philos]);
+		write_activity(philo, "fork", start_time);
+		pthread_mutex_lock(&philo->shared_forks[pos]);
+		write_activity(philo, "fork", start_time);
 	}
 }
 
@@ -113,6 +122,11 @@ void	release_forks(t_philo_info *philo)
 		pthread_mutex_unlock(&philo->shared_forks[pos]);
 		pthread_mutex_unlock(&philo->shared_forks[(pos + 1) % num_of_philos]);
 	}
+	else
+	{
+		pthread_mutex_unlock(&philo->shared_forks[(pos + 1) % num_of_philos]);
+		pthread_mutex_unlock(&philo->shared_forks[pos]);
+	}
 }
 
 void	handle_eating(t_philo_info *philo, struct timeval start_time)
@@ -123,7 +137,7 @@ void	handle_eating(t_philo_info *philo, struct timeval start_time)
 
 void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
 {
-	write_activity(philo, "eating", start_time);
+	write_activity(philo, "sleeping", start_time);
 	usleep(philo->shared_config->time_to_sleep);
 }
 
@@ -134,7 +148,7 @@ void	*philo_lifecycle(void *arg)
 
 	philo = (t_philo_info *)arg;
 	gettimeofday(&start_time, NULL);
-	acquire_forks(philo);
+	acquire_forks(philo, start_time);
 	handle_eating(philo, start_time);
 	release_forks(philo);
 	handle_sleeping(philo, start_time);
