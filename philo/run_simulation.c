@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 22:59:16 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 23:34:55 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,23 @@ void	release_forks(t_philo_info *philo)
 
 void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
+	philo->last_meal_time = get_timestamp(start_time);
 	write_activity(philo, "eating", start_time);
 	usleep(philo->shared_config->time_to_eat);
+}
+
+void	handle_death(t_philo_info *philo, struct timeval start_time)
+{
+	unsigned long long	current_time;
+	unsigned long long	time_since_last_meal;
+
+	current_time = get_timestamp(start_time);
+	time_since_last_meal = current_time - philo->last_meal_time;
+	if (time_since_last_meal >= (philo->shared_config->time_to_die / 1000))
+	{
+		write_activity(philo, "died", start_time);
+		exit(-1);
+	}
 }
 
 void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
@@ -151,6 +166,7 @@ void	*philo_lifecycle(void *arg)
 	acquire_forks(philo, start_time);
 	handle_eating(philo, start_time);
 	release_forks(philo);
+	handle_death(philo, start_time);
 	handle_sleeping(philo, start_time);
 	pthread_exit(0);
 }

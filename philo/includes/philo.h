@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 22:44:47 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 23:08:52 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ typedef struct s_philo_config
 
 typedef struct s_philo_info
 {
-	size_t			position;
-	size_t			num_of_times_ate;
-	t_philo_config	*shared_config;
-	pthread_mutex_t	*shared_forks;
+	size_t				position;
+	size_t				num_of_times_ate;
+	unsigned long long	last_meal_time;
+	t_philo_config		*shared_config;
+	pthread_mutex_t		*shared_forks;
 }	t_philo_info;
 
 // philo.c
