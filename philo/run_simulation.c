@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 22:25:07 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 22:53:28 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,43 +89,41 @@
 
 void	acquire_forks(t_philo_info *philo)
 {
-	size_t	position;
+	size_t	pos;
 	size_t	num_of_philos;
 
-	position = philo->position;
+	pos = philo->position;
 	num_of_philos = philo->shared_config->num_of_philos;
 	if (philo->position % 2 == 0)
 	{
-		pthread_mutex_lock(&philo->shared_forks[position]);
-		pthread_mutex_lock(&philo->shared_forks[(position + 1) % num_of_philos]);
+		pthread_mutex_lock(&philo->shared_forks[pos]);
+		pthread_mutex_lock(&philo->shared_forks[(pos + 1) % num_of_philos]);
 	}
 }
 
 void	release_forks(t_philo_info *philo)
 {
-	size_t	position;
+	size_t	pos;
 	size_t	num_of_philos;
 
-	position = philo->position;
+	pos = philo->position;
 	num_of_philos = philo->shared_config->num_of_philos;
 	if (philo->position % 2 == 0)
 	{
-		pthread_mutex_unlock(&philo->shared_forks[position]);
-		pthread_mutex_unlock(&philo->shared_forks[(position + 1) % num_of_philos]);
+		pthread_mutex_unlock(&philo->shared_forks[pos]);
+		pthread_mutex_unlock(&philo->shared_forks[(pos + 1) % num_of_philos]);
 	}
 }
 
 void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
-	write_timestamp(start_time);
-	write_activity(philo, "eating");
+	write_activity(philo, "eating", start_time);
 	usleep(philo->shared_config->time_to_eat);
 }
 
 void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
 {
-	write_timestamp(start_time);
-	write_activity(philo, "eating");
+	write_activity(philo, "eating", start_time);
 	usleep(philo->shared_config->time_to_sleep);
 }
 
