@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 00:32:08 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 22:19:31 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ typedef struct s_philo_info
 	pthread_mutex_t	*shared_forks;
 }	t_philo_info;
 
-// philo.c
+// write_functions.c
 void			write_error(char *msg);
+void			write_timestamp(struct timeval start_time);
+void			write_activity(t_philo_info *philo, char *activity);
 
 // parse_argv.c
 void			parse_argv(t_philo_config *config, char **argv);

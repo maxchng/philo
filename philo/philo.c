@@ -6,16 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:07:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 23:42:23 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/20 22:17:24 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
-
-void	write_error(char *msg)
-{
-	write(STDERR_FILENO, msg, ft_strlen(msg));
-}
 
 int	main(int argc, char **argv)
 {

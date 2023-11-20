@@ -10,6 +10,7 @@ OBJS_PATH := ./objs/
 
 # Source files
 SRCS := philo.c \
+		write_functions.c \
 		parse_argv.c \
 		is_valid_input.c \
 		set_config.c \
