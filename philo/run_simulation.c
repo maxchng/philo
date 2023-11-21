@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/22 05:32:43 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/22 05:34:15 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,6 @@ void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
 	}
 }
 
-void	handle_thinking(t_philo_info *philo, struct timeval start_time)
-{
-	write_activity(philo, "thinking", start_time);
-}
-
 void	handle_death(t_philo_info *philo, struct timeval start_time)
 {
 	size_t	time_to_sleep;
@@ -101,6 +96,11 @@ void	handle_death(t_philo_info *philo, struct timeval start_time)
 		write_activity(philo, "died", start_time);
 		pthread_exit(0);
 	}
+}
+
+void	handle_thinking(t_philo_info *philo, struct timeval start_time)
+{
+	write_activity(philo, "thinking", start_time);
 }
 
 void	*philo_lifecycle(void *arg)
