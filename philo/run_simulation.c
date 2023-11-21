@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/21 17:10:53 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/21 17:40:19 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,8 @@ void	*philo_lifecycle(void *arg)
 	acquire_forks(philo, start_time);
 	handle_eating(philo, start_time);
 	release_forks(philo);
-	handle_death(philo, start_time);
 	handle_sleeping(philo, start_time);
+	handle_death(philo, start_time);
 	pthread_exit(0);
 }
 
