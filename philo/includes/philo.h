@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/21 17:09:31 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/22 02:49:25 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_philo_config
 
 typedef struct s_philo_info
 {
+	bool				is_dead;
 	size_t				position;
 	size_t				num_of_times_ate;
 	size_t				last_meal_time;

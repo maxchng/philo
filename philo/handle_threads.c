@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:29:32 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 00:30:04 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/22 02:51:50 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ static void	create_threads(t_philo_info *philos, size_t num_of_philos,
 		philos[i].position = i;
 		pthread_create(&tid[i], NULL, philo_lifecycle, (void *)(&philos[i]));
 		i++;
+	}
+}
+
+static void monitor_status(t_philo_info *philos, size_t num_of_philos)
+{
+	size_t	i;
+
+	i = 0;
+	while (1)
+	{
+		if(philos[i++ % num_of_philos].is_dead == true)
+		{
+			printf("found a dead philo\n");//
+			exit(-1);
+		}
 	}
 }
 
@@ -47,5 +62,6 @@ void	handle_threads(t_philo_info *philos, size_t num_of_philos)
 		exit(-1);
 	}
 	create_threads(philos, num_of_philos, tid);
+	monitor_status(philos, num_of_philos);
 	join_threads(num_of_philos, tid);
 }
