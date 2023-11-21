@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 23:08:52 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/21 17:09:31 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ typedef struct s_philo_config
 {
 	size_t				num_of_philos;
 	size_t				num_of_times_to_eat;
-	unsigned long long	time_to_die;
-	unsigned long long	time_to_eat;
-	unsigned long long	time_to_sleep;
+	size_t				time_to_die;
+	size_t				time_to_eat;
+	size_t				time_to_sleep;
 }	t_philo_config;
 
 typedef struct s_philo_info
 {
 	size_t				position;
 	size_t				num_of_times_ate;
-	unsigned long long	last_meal_time;
+	size_t				last_meal_time;
 	t_philo_config		*shared_config;
 	pthread_mutex_t		*shared_forks;
 }	t_philo_info;
@@ -57,7 +57,7 @@ void				*philo_lifecycle(void *arg);
 void				handle_threads(t_philo_info *philos, size_t num_of_philos);
 
 // philo_lifecycle.c
-unsigned long long	get_timestamp(struct timeval start_time);
+size_t				get_timestamp_ms(struct timeval start_time);
 void				write_activity(t_philo_info *philo, char *activity,
 						struct timeval start_time);
 

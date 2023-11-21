@@ -6,27 +6,22 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:56:03 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/19 19:42:33 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/21 17:00:59 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
-
-static unsigned long long	convert_ms_to_us(int miliseconds)
-{
-	return ((unsigned long long)miliseconds * 1000);
-}
 
 void	set_config(t_philo_config *config, char *token, size_t i)
 {
 	if (i == 1)
 		config->num_of_philos = ft_atoi(token);
 	else if (i == 2)
-		config->time_to_die = convert_ms_to_us(ft_atoi(token));
+		config->time_to_die = ft_atoi(token);
 	else if (i == 3)
-		config->time_to_eat = convert_ms_to_us(ft_atoi(token));
+		config->time_to_eat = ft_atoi(token);
 	else if (i == 4)
-		config->time_to_sleep = convert_ms_to_us(ft_atoi(token));
+		config->time_to_sleep = ft_atoi(token);
 	else if (i == 5)
 		config->num_of_times_to_eat = ft_atoi(token);
 }

@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 23:34:55 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/21 17:10:53 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,29 +131,29 @@ void	release_forks(t_philo_info *philo)
 
 void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
-	philo->last_meal_time = get_timestamp(start_time);
+	philo->last_meal_time = get_timestamp_ms(start_time);
 	write_activity(philo, "eating", start_time);
-	usleep(philo->shared_config->time_to_eat);
-}
-
-void	handle_death(t_philo_info *philo, struct timeval start_time)
-{
-	unsigned long long	current_time;
-	unsigned long long	time_since_last_meal;
-
-	current_time = get_timestamp(start_time);
-	time_since_last_meal = current_time - philo->last_meal_time;
-	if (time_since_last_meal >= (philo->shared_config->time_to_die / 1000))
-	{
-		write_activity(philo, "died", start_time);
-		exit(-1);
-	}
+	usleep(philo->shared_config->time_to_eat * 1000);
 }
 
 void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
 {
 	write_activity(philo, "sleeping", start_time);
-	usleep(philo->shared_config->time_to_sleep);
+	usleep(philo->shared_config->time_to_sleep * 1000);
+}
+
+void	handle_death(t_philo_info *philo, struct timeval start_time)
+{
+	size_t				current_time;
+	size_t				time_since_last_meal;
+
+	current_time = get_timestamp_ms(start_time);
+	time_since_last_meal = current_time - philo->last_meal_time;
+	if (time_since_last_meal >= (philo->shared_config->time_to_die))
+	{
+		write_activity(philo, "died", start_time);
+		exit(-1);
+	}
 }
 
 void	*philo_lifecycle(void *arg)
