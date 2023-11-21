@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:17:12 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/21 17:09:50 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/21 17:56:44 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	write_activity(t_philo_info *philo, char *activity,
 	if (ft_strcmp(activity, "fork") == 0)
 	{
 		printf(
-			"%ldms %ld has taken a fork\n",
+			"%ld %ld has taken a fork\n",
 			get_timestamp_ms(start_time),
 			philo->position
 			);
@@ -37,7 +37,7 @@ void	write_activity(t_philo_info *philo, char *activity,
 	else if (ft_strcmp(activity, "died") == 0)
 	{
 		printf(
-			"%ldms %ld died\n",
+			"%ld %ld died\n",
 			get_timestamp_ms(start_time),
 			philo->position
 			);
@@ -45,7 +45,7 @@ void	write_activity(t_philo_info *philo, char *activity,
 	else
 	{
 		printf(
-			"%ldms %ld is %s\n",
+			"%ld %ld is %s\n",
 			get_timestamp_ms(start_time),
 			philo->position,
 			activity
