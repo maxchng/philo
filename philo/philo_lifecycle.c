@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:17:12 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/22 05:40:12 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/23 23:46:57 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 size_t	get_timestamp_ms(struct timeval start_time)
 {
 	struct timeval		current_time;
-	unsigned long long	diff_in_ms;
+	size_t				diff_in_ms;
 
 	gettimeofday(&current_time, NULL);
-	diff_in_ms = (current_time.tv_sec - start_time.tv_sec) * 1000ULL
-		+ (current_time.tv_usec - start_time.tv_usec) / 1000ULL;
-	return ((size_t)diff_in_ms);
+	diff_in_ms = (current_time.tv_sec - start_time.tv_sec) * 1000
+		+ (current_time.tv_usec - start_time.tv_usec) / 1000;
+	return (diff_in_ms);
 }
 
 void	write_activity(t_philo_info *philo, char *activity,
