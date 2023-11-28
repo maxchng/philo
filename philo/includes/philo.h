@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/22 02:49:25 by ychng            ###   ########.fr       */
+/*   Updated: 2023/11/28 16:15:00 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philo_info
 	size_t				last_meal_time;
 	t_philo_config		*shared_config;
 	pthread_mutex_t		*shared_forks;
+	pthread_mutex_t		*shared_activity;
 }	t_philo_info;
 
 // philo.c
