@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:17:12 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/24 17:34:32 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/24 21:51:55 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,30 @@ void	write_activity(t_philo_info *philo, char *activity,
 	struct timeval start_time)
 {
 	pthread_mutex_lock(philo->shared_stats->log_mutexes);
-	if (ft_strcmp(activity, "fork") == 0)
+	if (!philo->shared_stats->death_printed)
 	{
-		printf("%ld %ld has taken a fork\n",
-			get_timestamp_ms(start_time),
-			philo->position
-			);
-	}
-	else if (ft_strcmp(activity, "died") == 0)
-	{
-		printf("%ld %ld died\n",
-			get_timestamp_ms(start_time),
-			philo->position
-			);
-	}
-	else
-	{
-		printf("%ld %ld is %s\n",
-			get_timestamp_ms(start_time),
-			philo->position, activity
-			);
+		if (ft_strcmp(activity, "fork") == 0)
+		{
+			printf("%ld %ld has taken a fork\n",
+				get_timestamp_ms(start_time),
+				philo->position
+				);
+		}
+		else if (ft_strcmp(activity, "died") == 0)
+		{
+			printf("%ld %ld died\n",
+				get_timestamp_ms(start_time),
+				philo->position
+				);
+			philo->shared_stats->death_printed = true;
+		}
+		else
+		{
+			printf("%ld %ld is %s\n",
+				get_timestamp_ms(start_time),
+				philo->position, activity
+				);
+		}
 	}
 	pthread_mutex_unlock(philo->shared_stats->log_mutexes);
 }
