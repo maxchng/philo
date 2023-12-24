@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:29:32 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/22 03:57:01 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/24 17:33:52 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	handle_threads(t_philo_info *philos, size_t num_of_philos)
 	if (!tid)
 	{
 		write_error("malloc failed for tid\n");
-		free(philos->shared_forks);
+		free(philos->shared_stats->fork_mutexes);
 		exit(-1);
 	}
 	create_threads(philos, num_of_philos, tid);

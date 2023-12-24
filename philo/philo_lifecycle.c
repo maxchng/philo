@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:17:12 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/28 16:22:19 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/24 17:34:32 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	get_timestamp_ms(struct timeval start_time)
 void	write_activity(t_philo_info *philo, char *activity,
 	struct timeval start_time)
 {
-	pthread_mutex_lock(philo->shared_activity);
+	pthread_mutex_lock(philo->shared_stats->log_mutexes);
 	if (ft_strcmp(activity, "fork") == 0)
 	{
 		printf("%ld %ld has taken a fork\n",
@@ -48,5 +48,5 @@ void	write_activity(t_philo_info *philo, char *activity,
 			philo->position, activity
 			);
 	}
-	pthread_mutex_unlock(philo->shared_activity);
+	pthread_mutex_unlock(philo->shared_stats->log_mutexes);
 }

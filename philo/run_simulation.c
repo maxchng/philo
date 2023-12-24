@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/22 05:34:15 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/24 17:33:10 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@ void	acquire_forks(t_philo_info *philo, struct timeval start_time)
 {
 	size_t	pos;
 	size_t	num_of_philos;
+	size_t	next_fork_index;
 
 	pos = philo->position;
 	num_of_philos = philo->shared_config->num_of_philos;
+	next_fork_index = (pos + 1) % num_of_philos;
 	if (philo->position % 2 == 0)
 	{
-		pthread_mutex_lock(&philo->shared_forks[pos]);
+		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[pos]);
 		write_activity(philo, "fork", start_time);
-		pthread_mutex_lock(&philo->shared_forks[(pos + 1) % num_of_philos]);
+		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[next_fork_index]);
 		write_activity(philo, "fork", start_time);
 	}
 	else
 	{
-		pthread_mutex_lock(&philo->shared_forks[(pos + 1) % num_of_philos]);
+		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[next_fork_index]);
 		write_activity(philo, "fork", start_time);
-		pthread_mutex_lock(&philo->shared_forks[pos]);
+		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[pos]);
 		write_activity(philo, "fork", start_time);
 	}
 }
@@ -39,18 +41,20 @@ void	release_forks(t_philo_info *philo)
 {
 	size_t	pos;
 	size_t	num_of_philos;
+	size_t	next_fork_index;
 
 	pos = philo->position;
 	num_of_philos = philo->shared_config->num_of_philos;
+	next_fork_index = (pos + 1) % num_of_philos;
 	if (philo->position % 2 == 0)
 	{
-		pthread_mutex_unlock(&philo->shared_forks[pos]);
-		pthread_mutex_unlock(&philo->shared_forks[(pos + 1) % num_of_philos]);
+		pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[pos]);
+		pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[next_fork_index]);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->shared_forks[(pos + 1) % num_of_philos]);
-		pthread_mutex_unlock(&philo->shared_forks[pos]);
+		pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[next_fork_index]);
+		pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[pos]);
 	}
 }
 

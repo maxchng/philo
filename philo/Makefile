@@ -11,9 +11,10 @@ OBJS_PATH := ./objs/
 # Source files
 SRCS := philo.c \
 		parse_argv.c \
+		setup_stats.c \
 		is_valid_input.c \
 		set_config.c \
-		init_philos.c \
+		create_philos.c \
 		run_simulation.c \
 		handle_threads.c \
 		philo_lifecycle.c
