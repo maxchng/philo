@@ -6,11 +6,18 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/24 17:33:10 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/25 21:57:30 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
+
+static void	acquire_fork(t_philo_info *philo, size_t fork_index,
+	struct timeval start_time)
+{
+	pthread_mutex_lock(&philo->shared_stats->fork_mutexes[fork_index]);
+	write_activity(philo, "fork", start_time);
+}
 
 void	acquire_forks(t_philo_info *philo, struct timeval start_time)
 {
@@ -23,17 +30,13 @@ void	acquire_forks(t_philo_info *philo, struct timeval start_time)
 	next_fork_index = (pos + 1) % num_of_philos;
 	if (philo->position % 2 == 0)
 	{
-		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[pos]);
-		write_activity(philo, "fork", start_time);
-		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[next_fork_index]);
-		write_activity(philo, "fork", start_time);
+		acquire_fork(philo, pos, start_time);
+		acquire_fork(philo, next_fork_index, start_time);
 	}
 	else
 	{
-		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[next_fork_index]);
-		write_activity(philo, "fork", start_time);
-		pthread_mutex_lock(&philo->shared_stats->fork_mutexes[pos]);
-		write_activity(philo, "fork", start_time);
+		acquire_fork(philo, next_fork_index, start_time);
+		acquire_fork(philo, pos, start_time);
 	}
 }
 
