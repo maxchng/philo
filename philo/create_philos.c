@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 20:01:05 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/24 17:51:54 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/25 19:53:46 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	free_stats(t_philo_stats *stats)
 static void	init_philo(t_philo_info *philo, t_philo_config *config,
 	t_philo_stats *stats)
 {
+	*philo = (t_philo_info){0};
 	philo->shared_config = config;
 	philo->shared_stats = stats;	
 }
