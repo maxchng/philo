@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/25 21:57:30 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/25 22:07:32 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 static void	acquire_fork(t_philo_info *philo, size_t fork_index,
 	struct timeval start_time)
 {
+	size_t	elapsed_time;
+
 	pthread_mutex_lock(&philo->shared_stats->fork_mutexes[fork_index]);
-	write_activity(philo, "fork", start_time);
+	elapsed_time = get_timestamp_ms(start_time);
+	if (elapsed_time >= philo->shared_config->time_to_die)
+		write_activity(philo, "died", start_time);
+	else
+		write_activity(philo, "fork", start_time);
 }
 
 void	acquire_forks(t_philo_info *philo, struct timeval start_time)
