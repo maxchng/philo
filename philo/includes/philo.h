@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 15:06:41 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 16:35:50 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ typedef struct s_philo_stats
 {
 	pthread_mutex_t		*fork_mutexes;
 	pthread_mutex_t		*log_mutexes;
-	bool				death_printed;
+	bool				stop_printing;
 	struct timeval		start_time;
 }	t_philo_stats;
 
 typedef struct s_philo_info
 {
 	size_t				position;
-	size_t				num_of_times_ate;
+	size_t				eating_counter;
 	size_t				last_meal_time;
 	t_philo_config		*shared_config;
 	t_philo_stats		*shared_stats;

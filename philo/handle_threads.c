@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:29:32 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 15:12:55 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 16:35:36 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@ static void	create_threads(t_philo_info *philos, size_t num_of_philos,
 	}
 }
 
+bool	should_exit(t_philo_info *philos, size_t num_of_philos)
+{
+	size_t	i;
+	size_t	eating_counter;
+	size_t	num_of_times_to_eat;
+
+	i = 0;
+	while (i < num_of_philos)
+	{
+		num_of_times_to_eat = philos[i].shared_config->num_of_times_to_eat;
+		eating_counter = philos[i].eating_counter;
+		if (num_of_times_to_eat == 0)
+			return (false);
+		else if (eating_counter < num_of_times_to_eat)
+			return (false);
+		else if (philos[0].shared_stats->stop_printing)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 void	handle_threads(t_philo_info *philos, size_t num_of_philos)
 {
 	pthread_t	*tid;
@@ -41,7 +63,11 @@ void	handle_threads(t_philo_info *philos, size_t num_of_philos)
 	create_threads(philos, num_of_philos, tid);
 	while (1)
 	{
-		if (philos[0].shared_stats->death_printed)
+		if (should_exit(philos, num_of_philos))
+		{
+			// CLEANUP
+			philos[0].shared_stats->stop_printing = true;
 			exit(0);
+		}
 	}
 }
