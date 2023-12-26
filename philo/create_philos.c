@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 20:01:05 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/25 19:53:46 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 21:49:40 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	free_stats(t_philo_stats *stats)
 {
 	free(stats->fork_mutexes);
-	free(stats->log_mutexes);
+	free(stats->log_mutex);
 }
 
 static void	init_philo(t_philo_info *philo, t_philo_config *config,

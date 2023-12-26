@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:17:12 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 16:45:42 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 21:51:53 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ size_t	get_timestamp_ms(struct timeval start_time)
 void	write_activity(t_philo_info *philo, char *activity,
 	struct timeval start_time)
 {
-	pthread_mutex_lock(philo->shared_stats->log_mutexes);
+	pthread_mutex_lock(philo->shared_stats->log_mutex);
+	pthread_mutex_lock(philo->shared_stats->stop_printing_mutex);
 	if (!philo->shared_stats->stop_printing)
 	{
 		if (ft_strcmp(activity, "fork") == 0)
@@ -52,5 +53,6 @@ void	write_activity(t_philo_info *philo, char *activity,
 				);
 		}
 	}
-	pthread_mutex_unlock(philo->shared_stats->log_mutexes);
+	pthread_mutex_unlock(philo->shared_stats->stop_printing_mutex);
+	pthread_mutex_unlock(philo->shared_stats->log_mutex);
 }
