@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 16:16:31 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 16:30:13 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 21:16:19 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ void	setup_stats(t_philo_stats *stats, t_philo_config config)
 	{
 		// NEED TO DESTROY MUTEX
 		free(stats->fork_mutexes);
+		exit(-1);
+	}
+	stats->stop_printing_mutex = create_mutexes(1);
+	if (!stats->stop_printing_mutex)
+	{
+		// NEED TO DESTROY MUTEX
+		free(stats->fork_mutexes);
+		free(stats->log_mutexes);
 		exit(-1);
 	}
 	stats->stop_printing = false;

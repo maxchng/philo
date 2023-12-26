@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 19:29:16 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 21:27:23 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,29 @@ void	acquire_forks(t_philo_info *philo, struct timeval start_time)
 	{
 		acquire_fork(philo, pos, start_time);
 		acquire_fork(philo, next_fork_index, start_time);
+		pthread_mutex_lock(philo->shared_stats->stop_printing_mutex);
 		if (philo->shared_stats->stop_printing)
 		{
+			pthread_mutex_unlock(philo->shared_stats->stop_printing_mutex);
 			pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[pos]);
 			pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[next_fork_index]);	
 			pthread_exit(0);
 		}
+		pthread_mutex_unlock(philo->shared_stats->stop_printing_mutex);
 	}
 	else
 	{
 		acquire_fork(philo, next_fork_index, start_time);
 		acquire_fork(philo, pos, start_time);
+		pthread_mutex_lock(philo->shared_stats->stop_printing_mutex);
 		if (philo->shared_stats->stop_printing)
 		{
+			pthread_mutex_unlock(philo->shared_stats->stop_printing_mutex);
 			pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[next_fork_index]);	
 			pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[pos]);
 			pthread_exit(0);
 		}
+		pthread_mutex_unlock(philo->shared_stats->stop_printing_mutex);
 	}
 }
 
@@ -83,7 +89,7 @@ void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
 	philo->last_meal_time = get_timestamp_ms(start_time);
 	write_activity(philo, "eating", start_time);
-	philo->eating_counter++;
+	// philo->eating_counter++;
 	usleep(philo->shared_config->time_to_eat * 1000);
 }
 

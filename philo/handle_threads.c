@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:29:32 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 19:05:35 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 21:29:10 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,23 @@ bool	should_exit(t_philo_info *philos, size_t num_of_philos)
 	{
 		num_of_times_to_eat = philos[i].shared_config->num_of_times_to_eat;
 		eating_counter = philos[i].eating_counter;
+		pthread_mutex_lock(philos[0].shared_stats->stop_printing_mutex);
 		if (philos[0].shared_stats->stop_printing)
+		{
+			pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
 			return (true);
+		}
 		else if (num_of_times_to_eat == 0)
+		{
+			pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
 			return (false);
+		}
 		else if (eating_counter < num_of_times_to_eat)
+		{
+			pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
 			return (false);
+		}
+		pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
 		i++;
 	}
 	return (true);
@@ -44,7 +55,10 @@ void	*check_threads(void *arg)
 		if (should_exit(philos, philos[0].shared_config->num_of_philos))
 		{
 			// CLEANUP
+			pthread_mutex_lock(philos[0].shared_stats->stop_printing_mutex);
+
 			philos[0].shared_stats->stop_printing = true;
+			pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
 			pthread_exit(0);
 		}
 	}
@@ -89,4 +103,12 @@ void	handle_threads(t_philo_info *philos, size_t num_of_philos)
 	gettimeofday(&philos[0].shared_stats->start_time, NULL);
 	create_threads(philos, num_of_philos, tid);
 	join_threads(tid, num_of_philos);
+	size_t	i;
+
+	i = 0;
+	while (i < num_of_philos)
+		pthread_mutex_destroy(&philos->shared_stats->fork_mutexes[i++]);
+	pthread_mutex_destroy(&philos->shared_stats->log_mutexes[0]);
+	pthread_mutex_destroy(&philos->shared_stats->stop_printing_mutex[0]);
+	
 }
