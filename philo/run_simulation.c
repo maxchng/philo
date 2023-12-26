@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/25 22:07:32 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 15:34:36 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	acquire_fork(t_philo_info *philo, size_t fork_index,
 	size_t	elapsed_time;
 
 	pthread_mutex_lock(&philo->shared_stats->fork_mutexes[fork_index]);
-	elapsed_time = get_timestamp_ms(start_time);
+	elapsed_time = get_timestamp_ms(start_time) - philo->last_meal_time;
 	if (elapsed_time >= philo->shared_config->time_to_die)
 		write_activity(philo, "died", start_time);
 	else
@@ -122,14 +122,16 @@ void	*philo_lifecycle(void *arg)
 	struct timeval	start_time;
 
 	philo = (t_philo_info *)arg;
-	gettimeofday(&start_time, NULL);
-	acquire_forks(philo, start_time);
-	handle_eating(philo, start_time);
-	release_forks(philo);
-	handle_sleeping(philo, start_time);
-	handle_death(philo, start_time);
-	handle_thinking(philo, start_time);
-	pthread_exit(0);
+	start_time = philo->shared_stats->start_time;
+	while (1)
+	{
+		acquire_forks(philo, start_time);
+		handle_eating(philo, start_time);
+		release_forks(philo);
+		handle_sleeping(philo, start_time);
+		handle_death(philo, start_time);
+		handle_thinking(philo, start_time);
+	}
 }
 
 void	run_simulation(t_philo_info *philos)
