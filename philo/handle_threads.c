@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 00:29:32 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 16:35:36 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/26 16:47:26 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ bool	should_exit(t_philo_info *philos, size_t num_of_philos)
 	{
 		num_of_times_to_eat = philos[i].shared_config->num_of_times_to_eat;
 		eating_counter = philos[i].eating_counter;
-		if (num_of_times_to_eat == 0)
+		if (philos[0].shared_stats->stop_printing)
+			return (true);
+		else if (num_of_times_to_eat == 0)
 			return (false);
 		else if (eating_counter < num_of_times_to_eat)
-			return (false);
-		else if (philos[0].shared_stats->stop_printing)
 			return (false);
 		i++;
 	}
