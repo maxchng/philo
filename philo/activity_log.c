@@ -6,22 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:17:12 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 02:56:49 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 07:02:27 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
-
-size_t	get_elapsed_time(struct timeval start_time)
-{
-	struct timeval		current_time;
-	size_t				diff_in_ms;
-
-	gettimeofday(&current_time, NULL);
-	diff_in_ms = (current_time.tv_sec - start_time.tv_sec) * 1000
-		+ (current_time.tv_usec - start_time.tv_usec) / 1000;
-	return (diff_in_ms);
-}
 
 static void	print_activity(t_philo_info *philo, char *activity,
 	struct timeval start_time)

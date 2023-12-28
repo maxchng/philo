@@ -21,6 +21,7 @@ SRCS := philo.c \
 		acquire_forks.c \
 		release_forks.c \
 		activity_log.c \
+		time_utils.c \
 		cleanup.c
 
 # Object files

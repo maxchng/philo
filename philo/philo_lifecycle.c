@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:48:41 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 02:52:38 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 07:06:33 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	handle_eating(t_philo_info *philo, struct timeval start_time)
 	pthread_mutex_lock(philo->shared_stats->eating_counter_mutex);
 	philo->eating_counter++;
 	pthread_mutex_unlock(philo->shared_stats->eating_counter_mutex);
-	usleep(philo->shared_config->time_to_eat * 1000);
+	custom_usleep(philo->shared_config->time_to_eat);
 }
 
 static void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
@@ -36,12 +36,12 @@ static void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
 	if (sleep_end_time >= sleep_die_time)
 	{
 		sleep_duration = philo->shared_config->time_to_die;
-		usleep(sleep_duration * 1000);
+		custom_usleep(sleep_duration);
 	}
 	else
 	{
 		sleep_duration = philo->shared_config->time_to_sleep;
-		usleep(sleep_duration * 1000);
+		custom_usleep(sleep_duration);
 	}
 }
 
