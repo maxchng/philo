@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:48:41 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 07:06:33 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 07:23:58 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
 	sleep_end_time = current_time + philo->shared_config->time_to_sleep;
 	sleep_die_time = current_time + philo->shared_config->time_to_die;
 	write_activity(philo, "sleeping", start_time);
-	if (sleep_end_time >= sleep_die_time)
+	if (sleep_end_time > sleep_die_time)
 	{
 		sleep_duration = philo->shared_config->time_to_die;
 		custom_usleep(sleep_duration);
@@ -52,7 +52,7 @@ static void	handle_death(t_philo_info *philo, struct timeval start_time)
 
 	time_to_sleep = philo->shared_config->time_to_sleep;
 	time_to_die = philo->shared_config->time_to_die;
-	if (time_to_sleep >= time_to_die)
+	if (time_to_sleep > time_to_die)
 	{
 		write_activity(philo, "died", start_time);
 		pthread_exit(0);
