@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:50:02 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 07:20:32 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 07:32:49 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ static void	acquire_fork_even(t_philo_info *philo, struct timeval start_time)
 	pos = philo->position;
 	num_of_philos = philo->shared_config->num_of_philos;
 	next_fork_index = (pos + 1) % num_of_philos;
+	if (num_of_philos == 1)
+	{
+		write_activity(philo, "died", start_time);
+		pthread_exit(0);
+	}
 	acquire_fork(philo, pos, start_time);
 	acquire_fork(philo, next_fork_index, start_time);
 	pthread_mutex_lock(philo->shared_stats->stop_printing_mutex);

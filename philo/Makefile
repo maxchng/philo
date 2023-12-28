@@ -32,7 +32,7 @@ LIBFT_MAKE := $(MAKE) -C$(LIBFT_PATH)
 
 # Compiler and flags
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -fsanitize=address
+CFLAGS := -Wall -Werror -Wextra -fsanitize=thread
 
 # Include flags, for the compiler to find additional header files
 INCLUDE_SYS_HEADERS := -I$(SYS_HEADERS_PATH)
