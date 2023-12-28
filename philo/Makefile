@@ -16,7 +16,8 @@ SRCS := philo.c \
 		set_config.c \
 		create_philos.c \
 		run_simulation.c \
-		handle_threads.c \
+		manage_threads.c \
+		monitor_threads.c \
 		philo_lifecycle.c
 
 # Object files
