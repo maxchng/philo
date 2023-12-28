@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 23:41:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 00:39:11 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 01:08:40 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	acquire_fork(t_philo_info *philo, size_t fork_index,
 	size_t	elapsed_time;
 
 	pthread_mutex_lock(&philo->shared_stats->fork_mutexes[fork_index]);
-	elapsed_time = get_timestamp_ms(start_time) - philo->last_meal_time;
+	elapsed_time = get_elapsed_time(start_time) - philo->last_meal_time;
 	if (elapsed_time >= philo->shared_config->time_to_die)
 		write_activity(philo, "died", start_time);
 	else
@@ -99,7 +99,7 @@ void	release_forks(t_philo_info *philo)
 
 void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
-	philo->last_meal_time = get_timestamp_ms(start_time);
+	philo->last_meal_time = get_elapsed_time(start_time);
 	write_activity(philo, "eating", start_time);
 	pthread_mutex_lock(philo->shared_stats->eating_counter_mutex);
 	philo->eating_counter++;
@@ -114,7 +114,7 @@ void	handle_sleeping(t_philo_info *philo, struct timeval start_time)
 	size_t	sleep_die_time;
 	size_t	sleep_duration;
 
-	current_time = get_timestamp_ms(start_time);
+	current_time = get_elapsed_time(start_time);
 	sleep_end_time = current_time + philo->shared_config->time_to_sleep;
 	sleep_die_time = current_time + philo->shared_config->time_to_die;
 	write_activity(philo, "sleeping", start_time);

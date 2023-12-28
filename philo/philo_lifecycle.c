@@ -6,13 +6,13 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:17:12 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 21:51:53 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 01:08:40 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-size_t	get_timestamp_ms(struct timeval start_time)
+size_t	get_elapsed_time(struct timeval start_time)
 {
 	struct timeval		current_time;
 	size_t				diff_in_ms;
@@ -33,14 +33,14 @@ void	write_activity(t_philo_info *philo, char *activity,
 		if (ft_strcmp(activity, "fork") == 0)
 		{
 			printf("%ld %ld has taken a fork\n",
-				get_timestamp_ms(start_time),
+				get_elapsed_time(start_time),
 				philo->position
 				);
 		}
 		else if (ft_strcmp(activity, "died") == 0)
 		{
 			printf("%ld %ld died\n",
-				get_timestamp_ms(start_time),
+				get_elapsed_time(start_time),
 				philo->position
 				);
 			philo->shared_stats->stop_printing = true;
@@ -48,7 +48,7 @@ void	write_activity(t_philo_info *philo, char *activity,
 		else
 		{
 			printf("%ld %ld is %s\n",
-				get_timestamp_ms(start_time),
+				get_elapsed_time(start_time),
 				philo->position, activity
 				);
 		}

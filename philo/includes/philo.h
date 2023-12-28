@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 21:49:13 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 01:08:40 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				*philo_lifecycle(void *arg);
 void				handle_threads(t_philo_info *philos, size_t num_of_philos);
 
 // philo_lifecycle.c
-size_t				get_timestamp_ms(struct timeval start_time);
+size_t				get_elapsed_time(struct timeval start_time);
 void				write_activity(t_philo_info *philo, char *activity,
 						struct timeval start_time);
 
