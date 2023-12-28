@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:58:45 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 15:47:40 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 00:41:03 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ bool	is_valid_input(char *token, size_t i)
 		}
 		else if (i == 5)
 		{
-			write_error("number of times to eat must start from 1 to 2147483647\n");
+			write_error("number of times to eat ");
+			write_error("must start from 1 to 2147483647\n");
 			return (false);
 		}
 		write_error(token);

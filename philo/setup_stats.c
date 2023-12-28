@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 16:16:31 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/26 22:55:35 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 00:38:53 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ static bool	init_mutex(pthread_mutex_t **mutex, size_t num)
 
 static void	free_mutexes(t_philo_stats *stats)
 {
-    free(stats->fork_mutexes);
-    free(stats->log_mutex);
-    free(stats->stop_printing_mutex);
-    free(stats->eating_counter_mutex);
+	free(stats->fork_mutexes);
+	free(stats->log_mutex);
+	free(stats->stop_printing_mutex);
+	free(stats->eating_counter_mutex);
 }
 
 void	setup_stats(t_philo_stats *stats, t_philo_config config)
 {
-	if (!init_mutex(&stats->fork_mutexes, config.num_of_philos) ||
-		!init_mutex(&stats->log_mutex, 1) ||
-		!init_mutex(&stats->stop_printing_mutex, 1) ||
-		!init_mutex(&stats->eating_counter_mutex, 1))
+	if (!init_mutex(&stats->fork_mutexes, config.num_of_philos)
+		|| !init_mutex(&stats->log_mutex, 1)
+		|| !init_mutex(&stats->stop_printing_mutex, 1)
+		|| !init_mutex(&stats->eating_counter_mutex, 1))
 	{
 		free_mutexes(stats);
 		exit(-1);
