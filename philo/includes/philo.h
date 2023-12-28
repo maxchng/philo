@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 03:02:23 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 03:15:45 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,9 @@ void	*monitor_threads(void *arg);
 size_t	get_elapsed_time(struct timeval start_time);
 void	write_activity(t_philo_info *philo, char *activity,
 			struct timeval start_time);
+
+// cleanup.c
+void	free_mutexes(t_philo_stats *stats);
+void	cleanup(t_philo_info *philos);
 
 #endif

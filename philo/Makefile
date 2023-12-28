@@ -20,7 +20,8 @@ SRCS := philo.c \
 		philo_lifecycle.c \
 		acquire_forks.c \
 		release_forks.c \
-		activity_log.c
+		activity_log.c \
+		cleanup.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

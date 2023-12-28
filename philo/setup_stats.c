@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 16:16:31 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 00:38:53 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 03:13:51 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,6 @@ static bool	init_mutex(pthread_mutex_t **mutex, size_t num)
 {
 	*mutex = create_mutexes(num);
 	return (*mutex != NULL);
-}
-
-static void	free_mutexes(t_philo_stats *stats)
-{
-	free(stats->fork_mutexes);
-	free(stats->log_mutex);
-	free(stats->stop_printing_mutex);
-	free(stats->eating_counter_mutex);
 }
 
 void	setup_stats(t_philo_stats *stats, t_philo_config config)
