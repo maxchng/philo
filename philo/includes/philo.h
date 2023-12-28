@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 02:29:06 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 03:02:23 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,37 +45,43 @@ typedef struct s_philo_info
 }	t_philo_info;
 
 // philo.c
-void				write_error(char *msg);
+void	write_error(char *msg);
 
 // parse_argv.c
-void				parse_argv(t_philo_config *config, char **argv);
+void	parse_argv(t_philo_config *config, char **argv);
 
 // setup_stats.c
-void				setup_stats(t_philo_stats *stats, t_philo_config config);
+void	setup_stats(t_philo_stats *stats, t_philo_config config);
 
 // is_valid_input.c
-bool				is_valid_input(char *token, size_t i);
+bool	is_valid_input(char *token, size_t i);
 
 // set_config.c
-void				set_config(t_philo_config *config, char *token, size_t i);
+void	set_config(t_philo_config *config, char *token, size_t i);
 
 // create_philos.c
-void				create_philos(t_philo_info **philos, t_philo_config *config,
-						t_philo_stats *stats);
-
-// run_simulation.c
-void				run_simulation(t_philo_info *philos);
-void				*philo_lifecycle(void *arg);
-
-// manage_threads.c
-void				manage_threads(t_philo_info *philos, size_t num_of_philos);
-
-// monitor_threads.c
-void				*monitor_threads(void *arg);
+void	create_philos(t_philo_info **philos, t_philo_config *config,
+			t_philo_stats *stats);
 
 // philo_lifecycle.c
-size_t				get_elapsed_time(struct timeval start_time);
-void				write_activity(t_philo_info *philo, char *activity,
-						struct timeval start_time);
+void	*philo_lifecycle(void *arg);
+
+// acquire_for	
+void	acquire_forks(t_philo_info *philo, struct timeval start_time);
+
+// release_forks.c
+void	release_forks(t_philo_info *philo);
+void	unlock_forks(t_philo_info *philo, size_t fork1, size_t fork2);
+
+// manage_threads.c
+void	manage_threads(t_philo_info *philos, size_t num_of_philos);
+
+// monitor_threads.c
+void	*monitor_threads(void *arg);
+
+// activity_log.c
+size_t	get_elapsed_time(struct timeval start_time);
+void	write_activity(t_philo_info *philo, char *activity,
+			struct timeval start_time);
 
 #endif

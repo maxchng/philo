@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:07:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/24 17:52:23 by ychng            ###   ########.fr       */
+/*   Updated: 2023/12/29 02:47:29 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int	main(int argc, char **argv)
 	parse_argv(&config, argv);
 	setup_stats(&stats, config);
 	create_philos(&philos, &config, &stats);
-	run_simulation(philos);
+	manage_threads(philos, philos->shared_config->num_of_philos);
 }

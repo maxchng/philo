@@ -15,10 +15,12 @@ SRCS := philo.c \
 		is_valid_input.c \
 		set_config.c \
 		create_philos.c \
-		run_simulation.c \
 		manage_threads.c \
 		monitor_threads.c \
-		philo_lifecycle.c
+		philo_lifecycle.c \
+		acquire_forks.c \
+		release_forks.c \
+		activity_log.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
