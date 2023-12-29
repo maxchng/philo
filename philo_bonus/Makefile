@@ -1,7 +1,7 @@
-# Makefile for philo
+# Makeup for philo_bonus
 
 # Program name
-NAME := philo
+NAME := philo_bonus
 
 # Directory paths
 SYS_HEADERS_PATH := ../
@@ -9,7 +9,7 @@ LIBFT_PATH := ../libft/
 OBJS_PATH := ./objs/
 
 # Source files
-SRCS := philo.c \
+SRCS := philo_bonus.c \
 		parse_argv.c \
 		setup_stats.c \
 		is_valid_input.c \
