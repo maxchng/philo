@@ -17,7 +17,8 @@ SRCS := ft_strlen.c \
 		ft_strncmp.c \
 		ft_split.c \
 		ft_atoi.c \
-		ft_atoll.c
+		ft_atoll.c \
+		ft_itoa.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

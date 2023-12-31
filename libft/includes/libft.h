@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 18:00:36 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/18 17:24:14 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 01:04:47 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		**ft_split(const char *str, const char *delim);
 int			ft_atoi(const char *str);
 long long	ft_atoll(const char *str);
+char		*ft_itoa(int n);
 
 #endif
