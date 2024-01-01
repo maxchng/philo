@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 00:57:40 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 01:04:16 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 15:54:52 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	add_into_buffer(long n, char *buffer)
 {
-	long	temp;
 	size_t	i;
+	long	temp;
 
+	i = 0;
 	temp = n;
 	if (n == 0)
 		buffer[i++] = '0';
 	if (n < 0)
 		n *= -1;
-	i = 0;
 	while (n)
 	{
 		buffer[i++] = n % 10 + '0';
