@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 02:54:58 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 04:06:53 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ typedef struct s_philo_stats
 	pid_t			*pids;
 	sem_t			**fork_sems;
 	sem_t			*log_sem;
-	sem_t			*stop_printing_sem;
 	sem_t			*eating_counter_sem;
 	sem_t			*stop_simulation_sem;
 	sem_t			*start_kill_sem;
-	bool			stop_printing;
 	struct timeval	start_time;
 }	t_philo_stats;
 
