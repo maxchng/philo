@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:22:18 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 15:57:13 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 23:29:05 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void	alloc_forK_sems(t_philo_stats *stats, size_t num_of_philos)
 	}
 }
 
-static sem_t	*create_semaphores(char *name)
+static sem_t	*create_semaphores(char *name, size_t initial_val)
 {
 	sem_t	*semaphore;
 
 	sem_unlink(name);
-	semaphore = sem_open(name, O_CREAT | O_EXCL, 0644, 1);
+	semaphore = sem_open(name, O_CREAT | O_EXCL, 0644, initial_val);
 	if (semaphore == SEM_FAILED)
 	{
 		write_error("sem_open failed for semaphore\n");
@@ -48,13 +48,13 @@ static void	init_semaphores(t_philo_stats *stats, size_t num_of_philos)
 	{
 		num = ft_itoa(i);
 		name = ft_strjoin("/forks", num, NULL);
-		stats->fork_sems[i++] = create_semaphores(name);
+		stats->fork_sems[i++] = create_semaphores(name, 1);
 		free(num);
 		free(name);
 	}
-	stats->log_sem = create_semaphores("/log");
-	stats->stop_printing_sem = create_semaphores("/stop_printing");	
-	stats->eating_counter_sem = create_semaphores("/eating_counter");	
+	stats->log_sem = create_semaphores("/log", 1);
+	stats->stop_printing_sem = create_semaphores("/stop_printing", 1);	
+	stats->eating_counter_sem = create_semaphores("/eating_counter", 1);	
 }
 
 void	init_stats(t_philo_stats *stats, t_philo_config config)
