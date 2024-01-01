@@ -23,7 +23,6 @@ SRCS := philo_bonus.c \
 # release_forks.c \
 # activity_log.c \
 # time_utils.c \
-# cleanup.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
