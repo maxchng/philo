@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:19:02 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 16:02:52 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 17:03:49 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ int	main(int argc, char **argv)
 	parse_argv(&config, argv);
 	init_stats(&stats, config);
 	init_philo(&philo, &config, &stats);
+	create_processes(philo, config.num_of_philos);
+	cleanup(philo, config.num_of_philos);
 }

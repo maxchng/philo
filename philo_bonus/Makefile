@@ -15,14 +15,14 @@ SRCS := philo_bonus.c \
 		set_config.c \
 		init_stats.c \
 		init_philo.c \
+		create_processes.c \
+		monitor_simulation.c \
+		run_simulation.c \
+		acquire_forks.c \
+		release_forks.c \
+		write_activity.c \
+		time_utils.c \
 		cleanup.c
-# manage_threads.c \
-# monitor_threads.c \
-# philo_lifecycle.c \
-# acquire_forks.c \
-# release_forks.c \
-# activity_log.c \
-# time_utils.c \
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

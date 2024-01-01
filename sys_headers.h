@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:00:56 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 15:45:24 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 17:14:01 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@
 # include <pthread.h>
 # include <semaphore.h>
 # include <sys/time.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 #endif

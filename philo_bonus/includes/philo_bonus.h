@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 16:27:33 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 17:11:34 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,31 @@ void	init_stats(t_philo_stats *stats, t_philo_config config);
 // init_philo.c
 void	init_philo(t_philo_info *philo, t_philo_config *config,
 			t_philo_stats *stats);
+
+// create_processes.c
+void	create_processes(t_philo_info philo, size_t num_of_philos);
+
+// monitor_simulation.c
+void	*monitor_simulation(void *arg);
+
+// run_simulation.c
+void	run_simulation(t_philo_info philo);
+
+// acquire_forks.c
+void	acquire_forks(t_philo_info *philo, struct timeval start_time);
+
+// release_forks.c
+void	unlock_forks(t_philo_info *philo, size_t fork1,
+			size_t fork2);
+void	release_forks(t_philo_info *philo);
+
+// write_activity.c
+void	write_activity(t_philo_info *philo, char *activity,
+			struct timeval start_time);
+
+// time_utils.c
+void	custom_usleep(size_t activity_time);
+size_t	get_elapsed_time(struct timeval start_time);
 
 // cleanup.c
 void	cleanup(t_philo_info philo, size_t num_of_philos);
