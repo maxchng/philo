@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 01:08:57 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 02:54:58 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	init_philo(t_philo_info *philo, t_philo_config *config,
 
 // manage_processes.c
 void	manage_processes(t_philo_info *philo, size_t num_of_philos);
+
+// monitor_eat_count.c
+void	*monitor_eat_count(void *arg);
 
 // start_kill.c
 void	*start_kill(void *arg);

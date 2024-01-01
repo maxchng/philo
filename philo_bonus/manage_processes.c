@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:05:12 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 01:08:03 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 02:58:51 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	manage_processes(t_philo_info *philo, size_t num_of_philos)
 		}
 		i++;
 	}
+	if (philo->shared_config->num_of_times_to_eat != 0)
+		pthread_create(&tid, NULL, monitor_eat_count, (void *)philo);
 	pthread_create(&tid, NULL, start_kill, (void *)philo);
 	pthread_join(tid, NULL);
 	while (i--)
