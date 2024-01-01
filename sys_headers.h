@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 20:00:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/20 02:53:35 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 15:45:24 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <limits.h>
+# include <fcntl.h>
 # include <pthread.h>
+# include <semaphore.h>
 # include <sys/time.h>
 
 #endif

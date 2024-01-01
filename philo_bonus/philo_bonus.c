@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:07:56 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 16:20:09 by ychng            ###   ########.fr       */
+/*   Created: 2024/01/01 15:19:02 by ychng             #+#    #+#             */
+/*   Updated: 2024/01/01 15:56:43 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 {
 	t_philo_config	config;
 	t_philo_stats	stats;
-	t_philo_info	*philos;
+	// t_philo_info	philo;
 
 	if (argc != 5 && argc != 6)
 	{
@@ -34,8 +34,5 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	parse_argv(&config, argv);
-	setup_stats(&stats, config);
-	create_philos(&philos, &config, &stats);
-	manage_threads(philos, philos->shared_config->num_of_philos);
-	cleanup(philos);
+	init_stats(&stats, config);
 }

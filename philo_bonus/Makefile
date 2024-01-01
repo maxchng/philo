@@ -11,18 +11,19 @@ OBJS_PATH := ./objs/
 # Source files
 SRCS := philo_bonus.c \
 		parse_argv.c \
-		setup_stats.c \
 		is_valid_input.c \
 		set_config.c \
-		create_philos.c \
-		manage_threads.c \
-		monitor_threads.c \
-		philo_lifecycle.c \
-		acquire_forks.c \
-		release_forks.c \
-		activity_log.c \
-		time_utils.c \
-		cleanup.c
+		init_stats.c \
+
+# create_philos.c \
+# manage_threads.c \
+# monitor_threads.c \
+# philo_lifecycle.c \
+# acquire_forks.c \
+# release_forks.c \
+# activity_log.c \
+# time_utils.c \
+# cleanup.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
