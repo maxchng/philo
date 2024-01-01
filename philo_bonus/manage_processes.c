@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:05:12 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 03:57:34 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 04:21:00 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	manage_processes(t_philo_info *philo, size_t num_of_philos)
 		pthread_detach(eat);
 	}
 	pthread_create(&kill, NULL, start_kill, (void *)philo);
-	pthread_detach(kill);
+	pthread_join(kill, NULL);
 	while (i--)
 		waitpid(-1, NULL, 0);
 }
