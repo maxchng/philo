@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:22:18 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 00:12:12 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 00:56:47 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ static void	init_semaphores(t_philo_stats *stats, size_t num_of_philos)
 	}
 	stats->log_sem = create_semaphores("/log", 1);
 	stats->stop_printing_sem = create_semaphores("/stop_printing", 1);	
-	stats->eating_counter_sem = create_semaphores("/eating_counter", 1);	
+	stats->eating_counter_sem = create_semaphores("/eating_counter", 1);
+	stats->stop_simulation_sem = create_semaphores("/stop_simulation_sem", 1);
+	stats->start_kill_sem = create_semaphores("/start_kill_sem", 0);
 }
 
 void	init_stats(t_philo_stats *stats, t_philo_config config)

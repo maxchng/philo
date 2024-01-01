@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:01:17 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 17:51:40 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 00:57:02 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	print_activity(t_philo_info *philo, char *activity,
 			get_elapsed_time(start_time),
 			philo->position
 			);
+		sem_post(philo->shared_stats->start_kill_sem);
+		sem_wait(philo->shared_stats->stop_simulation_sem);
 	}
 	else
 	{
@@ -43,9 +45,8 @@ void	write_activity(t_philo_info *philo, char *activity,
 	struct timeval start_time)
 {
 	sem_wait(philo->shared_stats->log_sem);
-	sem_wait(philo->shared_stats->stop_printing_sem);
-	if (!philo->shared_stats->stop_printing)
-		print_activity(philo, activity, start_time);
-	sem_post(philo->shared_stats->stop_printing_sem);
+	sem_wait(philo->shared_stats->stop_simulation_sem);
+	print_activity(philo, activity, start_time);
+	sem_post(philo->shared_stats->stop_simulation_sem);
 	sem_post(philo->shared_stats->log_sem);
 }

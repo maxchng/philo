@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 00:12:03 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 01:08:57 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_philo_stats
 	sem_t			*log_sem;
 	sem_t			*stop_printing_sem;
 	sem_t			*eating_counter_sem;
+	sem_t			*stop_simulation_sem;
+	sem_t			*start_kill_sem;
 	bool			stop_printing;
 	struct timeval	start_time;
 }	t_philo_stats;
@@ -67,8 +69,8 @@ void	init_philo(t_philo_info *philo, t_philo_config *config,
 // manage_processes.c
 void	manage_processes(t_philo_info *philo, size_t num_of_philos);
 
-// monitor_simulation.c
-void	*monitor_simulation(void *arg);
+// start_kill.c
+void	*start_kill(void *arg);
 
 // run_simulation.c
 void	run_simulation(t_philo_info *philo);

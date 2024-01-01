@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:55:46 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 00:18:32 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 00:53:21 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@ static void	acquire_fork_even(t_philo_info *philo, struct timeval start_time)
 	}
 	acquire_fork(philo, pos, start_time);
 	acquire_fork(philo, next_fork_index, start_time);
-	sem_wait(philo->shared_stats->stop_printing_sem);
-	if (philo->shared_stats->stop_printing)
-	{
-		sem_post(philo->shared_stats->stop_printing_sem);
-		unlock_forks(philo, pos, next_fork_index);
-		exit(0);
-	}
-	sem_post(philo->shared_stats->stop_printing_sem);
 }
 
 static void	acquire_fork_odd(t_philo_info *philo, struct timeval start_time)
@@ -62,14 +54,6 @@ static void	acquire_fork_odd(t_philo_info *philo, struct timeval start_time)
 	next_fork_index = (pos + 1) % num_of_philos;
 	acquire_fork(philo, next_fork_index, start_time);
 	acquire_fork(philo, pos, start_time);
-	sem_wait(philo->shared_stats->stop_printing_sem);
-	if (philo->shared_stats->stop_printing)
-	{
-		sem_post(philo->shared_stats->stop_printing_sem);
-		unlock_forks(philo, next_fork_index, pos);
-		exit(0);
-	}
-	sem_post(philo->shared_stats->stop_printing_sem);
 }
 
 void	acquire_forks(t_philo_info *philo, struct timeval start_time)
