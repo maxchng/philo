@@ -6,17 +6,28 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 15:22:18 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 23:29:05 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 00:12:12 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo_bonus.h"
+
+static void	alloc_pids(t_philo_stats *stats, size_t num_of_philos)
+{
+	stats->pids = malloc(sizeof(pid_t) * num_of_philos);
+	if (!stats->pids)
+	{
+		write_error("malloc failed for stats->pid\n");
+		exit(-1);
+	}
+}
 
 static void	alloc_forK_sems(t_philo_stats *stats, size_t num_of_philos)
 {
 	stats->fork_sems = malloc(sizeof(sem_t *) * num_of_philos);
 	if (!stats->fork_sems)
 	{
+		free(stats->pids);
 		write_error("malloc failed for stats->fork_sems\n");
 		exit(-1);
 	}
@@ -59,6 +70,7 @@ static void	init_semaphores(t_philo_stats *stats, size_t num_of_philos)
 
 void	init_stats(t_philo_stats *stats, t_philo_config config)
 {
+	alloc_pids(stats, config.num_of_philos);
 	init_semaphores(stats, config.num_of_philos);
 	stats->stop_printing = false;
 }

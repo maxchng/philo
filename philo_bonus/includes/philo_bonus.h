@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 22:32:17 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 00:12:03 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_philo_config
 
 typedef struct s_philo_stats
 {
+	pid_t			*pids;
 	sem_t			**fork_sems;
 	sem_t			*log_sem;
 	sem_t			*stop_printing_sem;

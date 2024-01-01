@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:05:12 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 22:32:04 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 00:14:06 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,19 @@ void	manage_processes(t_philo_info *philo, size_t num_of_philos)
 {
 	size_t		i;
 	pthread_t	tid;
-	pid_t		pid;
 
 	i = 0;
 	gettimeofday(&philo->shared_stats->start_time, NULL);
 	while (i < num_of_philos)
 	{
-		pid = fork();
-		if (pid == 0)
+		philo->shared_stats->pids[i] = fork();
+		if (philo->shared_stats->pids[i] == 0)
 		{
 			pthread_create(&tid, NULL, monitor_simulation, (void *)philo);
 			philo->position = i;
 			run_simulation(philo);
 		}
-		else if (pid < 0)
+		else if (philo->shared_stats->pids[i] < 0)
 		{
 			cleanup(philo, num_of_philos);
 			write_error("fork failed for pid\n");
