@@ -15,6 +15,7 @@ SRCS := philo_bonus.c \
 		set_config.c \
 		init_stats.c \
 		init_philo.c \
+		cleanup.c
 # manage_threads.c \
 # monitor_threads.c \
 # philo_lifecycle.c \
