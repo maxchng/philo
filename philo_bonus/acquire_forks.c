@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:55:46 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 17:53:07 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 00:18:32 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ static void	acquire_fork(t_philo_info *philo, size_t fork_index,
 	sem_wait(philo->shared_stats->fork_sems[fork_index]);
 	elapsed_time = get_elapsed_time(start_time) - philo->last_meal_time;
 	if (elapsed_time > philo->shared_config->time_to_die)
-	{
-		printf("pos %ld: %d\n",philo->position, philo->shared_stats->stop_printing);
 		write_activity(philo, "died", start_time);
-	}
 	else
 		write_activity(philo, "fork", start_time);
 }
