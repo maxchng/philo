@@ -14,8 +14,7 @@ SRCS := philo_bonus.c \
 		is_valid_input.c \
 		set_config.c \
 		init_stats.c \
-
-# create_philos.c \
+		init_philo.c \
 # manage_threads.c \
 # monitor_threads.c \
 # philo_lifecycle.c \

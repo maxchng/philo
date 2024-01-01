@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 15:50:54 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 16:01:51 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,9 @@ void	set_config(t_philo_config *config, char *token, size_t i);
 
 // init_stats.c
 void	init_stats(t_philo_stats *stats, t_philo_config config);
+
+// init_philo.c
+void	init_philo(t_philo_info *philo, t_philo_config *config,
+			t_philo_stats *stats);
 
 #endif
