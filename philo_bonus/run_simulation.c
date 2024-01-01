@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:16:32 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 17:05:11 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 17:48:18 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,18 @@ static void	handle_thinking(t_philo_info *philo, struct timeval start_time)
 	write_activity(philo, "thinking", start_time);
 }
 
-void	run_simulation(t_philo_info philo)
+void	run_simulation(t_philo_info *philo)
 {
 	struct timeval	start_time;
 
-	start_time = philo.shared_stats->start_time;
+	start_time = philo->shared_stats->start_time;
 	while (1)
 	{
-		acquire_forks(&philo, start_time);
-		handle_eating(&philo, start_time);
-		release_forks(&philo);
-		handle_sleeping(&philo, start_time);
-		handle_death(&philo, start_time);
-		handle_thinking(&philo, start_time);
+		acquire_forks(philo, start_time);
+		handle_eating(philo, start_time);
+		release_forks(philo);
+		handle_sleeping(philo, start_time);
+		handle_death(philo, start_time);
+		handle_thinking(philo, start_time);
 	}
 }

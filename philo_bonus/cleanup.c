@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:08:57 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 16:42:20 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 17:35:30 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	free_semaphores(t_philo_stats *stats)
 	free(stats->fork_sems);
 }
 
-void	cleanup(t_philo_info philo, size_t num_of_philos)
+void	cleanup(t_philo_info *philo, size_t num_of_philos)
 {
-	destroy_semaphores(philo.shared_stats, num_of_philos);
-	free_semaphores(philo.shared_stats);
+	destroy_semaphores(philo->shared_stats, num_of_philos);
+	free_semaphores(philo->shared_stats);
 }

@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 17:01:17 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 17:02:50 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 17:51:40 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ static void	print_activity(t_philo_info *philo, char *activity,
 	}
 	else if (ft_strcmp(activity, "died") == 0)
 	{
+		philo->shared_stats->stop_printing = true;
 		printf("%ld %ld died\n",
 			get_elapsed_time(start_time),
 			philo->position
 			);
-		philo->shared_stats->stop_printing = true;
 	}
 	else
 	{
