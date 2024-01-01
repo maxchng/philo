@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_processes.c                                 :+:      :+:    :+:   */
+/*   manage_processes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:05:12 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 17:58:18 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/01 22:32:04 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo_bonus.h"
 
-void	create_processes(t_philo_info *philo, size_t num_of_philos)
+void	manage_processes(t_philo_info *philo, size_t num_of_philos)
 {
 	size_t		i;
 	pthread_t	tid;

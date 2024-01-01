@@ -15,7 +15,7 @@ SRCS := philo_bonus.c \
 		set_config.c \
 		init_stats.c \
 		init_philo.c \
-		create_processes.c \
+		manage_processes.c \
 		monitor_simulation.c \
 		run_simulation.c \
 		acquire_forks.c \
