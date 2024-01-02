@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:55:26 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/01 15:21:42 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 16:36:09 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	update_config(t_philo_config *config, char **argv)
 	size_t	i;
 	char	*token;
 
+	*config = (t_philo_config){0};
 	i = 1;
 	while (argv[i])
 	{
