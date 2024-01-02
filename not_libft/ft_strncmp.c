@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/05 17:21:54 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/13 15:41:42 by ychng            ###   ########.fr       */
+/*   Created: 2023/10/30 20:15:46 by ychng             #+#    #+#             */
+/*   Updated: 2024/01/02 12:12:54 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "includes/not_libft.h"
 
-char	*ft_strdup(const char *str)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	len;
-	char	*new;
 	size_t	i;
 
-	if (!str)
-		return (NULL);
-	len = ft_strlen(str);
-	new = malloc(sizeof(char) * (len + 1));
-	if (!new)
-		return (NULL);
 	i = 0;
-	while (i <= len)
+	while (s1[i] && s2[i] && i < n)
 	{
-		new[i] = str[i];
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (new);
+	if (i != n)
+		return (s1[i] - s2[i]);
+	return (0);
 }

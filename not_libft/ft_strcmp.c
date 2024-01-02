@@ -6,11 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 06:51:24 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/08 06:54:33 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 12:12:38 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "includes/not_libft.h"
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

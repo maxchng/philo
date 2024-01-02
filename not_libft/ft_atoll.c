@@ -6,11 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 18:28:21 by ychng             #+#    #+#             */
-/*   Updated: 2023/11/14 16:30:55 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 12:12:13 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "includes/not_libft.h"
 
 long long	ft_atoll(const char *str)
 {

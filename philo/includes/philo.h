@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 07:05:04 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 12:14:34 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PHILO_H
 
 # include "sys_headers.h"
-# include "libft.h"
+# include "not_libft.h"
 
 typedef struct s_philo_config
 {
