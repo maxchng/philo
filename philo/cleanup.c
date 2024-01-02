@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 03:12:46 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 03:22:44 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 13:11:41 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	cleanup(t_philo_info *philos)
 	pthread_mutex_destroy(philos[0].shared_stats->stop_printing_mutex);
 	pthread_mutex_destroy(philos[0].shared_stats->eating_counter_mutex);
 	free_mutexes(philos->shared_stats);
+	free(philos);
 }

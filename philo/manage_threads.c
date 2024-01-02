@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:21:26 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 02:29:14 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 13:11:49 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void	manage_threads(t_philo_info *philos, size_t num_of_philos)
 	gettimeofday(&philos[0].shared_stats->start_time, NULL);
 	create_threads(philos, num_of_philos, tid);
 	join_threads(tid, num_of_philos);
+	free(tid);
 }
