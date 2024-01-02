@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:16:32 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 03:02:22 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/02 12:07:04 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ static void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
 	philo->last_meal_time = get_elapsed_time(start_time);
 	write_activity(philo, "eating", start_time);
-	// sem_wait(philo->shared_stats->eating_counter_sem);
-	// philo->eating_counter++;
-	// sem_post(philo->shared_stats->eating_counter_sem);
 	if (++philo->eating_counter == philo->shared_config->num_of_times_to_eat)
 		sem_post(philo->shared_stats->eating_counter_sem);
 	custom_usleep(philo->shared_config->time_to_eat);
