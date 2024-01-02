@@ -41,7 +41,7 @@ INCLUDE_NOT_LIBFT := -I$(NOT_LIBFT_PATH)includes/
 
 # Locate, and Link flags, for the compiler to find and link the static library
 LDFLAGS := -L$(NOT_LIBFT_PATH)
-LDLIBS := -lft -pthread
+LDLIBS := -l:not_libft.a -pthread
 
 # Remove command and flags
 RM := rm
