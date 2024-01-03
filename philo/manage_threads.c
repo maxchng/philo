@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:21:26 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/03 16:57:15 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 22:26:49 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	create_threads(t_philo_info *philos, size_t num_of_philos,
 {
 	size_t	i;
 
-	pthread_create(&tid[num_of_philos], NULL, monitor_threads, (void *)philos);
 	i = 0;
 	while (i < num_of_philos)
 	{
@@ -31,7 +30,6 @@ static void	join_threads(pthread_t *tid, size_t num_of_philos)
 {
 	size_t	i;
 
-	pthread_join(tid[num_of_philos], NULL);
 	i = 0;
 	while (i < num_of_philos)
 		pthread_join(tid[i++], NULL);
@@ -50,6 +48,7 @@ void	manage_threads(t_philo_info *philos, size_t num_of_philos)
 	}
 	gettimeofday(&philos[0].shared_stats->start_time, NULL);
 	create_threads(philos, num_of_philos, tid);
+	monitor_threads(philos, num_of_philos);
 	join_threads(tid, num_of_philos);
 	free(tid);
 }
