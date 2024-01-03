@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:05:12 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 12:00:46 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:58:41 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	create_processes(t_philo_info *philo, size_t num_of_philos)
 			exit(-1);
 		}
 		i++;
-	}	
+	}
 }
 
 static void	create_threads(t_philo_info *philo)

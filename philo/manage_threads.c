@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:21:26 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 13:11:49 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:57:15 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	create_threads(t_philo_info *philos, size_t num_of_philos,
 	pthread_t *tid)
 {
-	size_t		i;
+	size_t	i;
 
 	pthread_create(&tid[num_of_philos], NULL, monitor_threads, (void *)philos);
 	i = 0;
