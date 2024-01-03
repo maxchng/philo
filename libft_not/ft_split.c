@@ -6,11 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:26:42 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 12:12:28 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:17:12 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/not_libft.h"
+#include "includes/libft_not.h"
 
 static size_t	count_no_words(const char *str, const char *delim)
 {

@@ -1,7 +1,7 @@
-# Makefile for not_libft
+# Makefile for libft_not
 
 # Static library name
-NAME := not_libft.a
+NAME := libft_not.a
 
 # Directory paths
 SYS_HEADERS_PATH := ../

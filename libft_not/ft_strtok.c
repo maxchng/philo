@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 17:23:12 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 12:12:04 by ychng            ###   ########.fr       */
+/*   Created: 2023/10/29 14:58:45 by ychng             #+#    #+#             */
+/*   Updated: 2024/01/03 16:17:39 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/not_libft.h"
+#include "includes/libft_not.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strtok(char *str, const char *delim)
 {
+	static char	*main_str;
+	char		*part;
 	size_t		i;
-	int			result;
-	bool		is_negative;
 
+	if (str != NULL)
+		main_str = str;
+	if (delim == NULL)
+		delim = " \t\n\r\v\f\b";
 	i = 0;
-	result = 0;
-	is_negative = false;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+	while (ft_strchr(delim, main_str[i]) && main_str[i])
 		i++;
-	if (str[i] == '-')
-		is_negative = true;
-	if (str[i] == '-' || str[i] == '+')
+	if (main_str[i] == '\0')
+		return (NULL);
+	part = main_str + i;
+	while (!ft_strchr(delim, main_str[i]) && main_str[i])
 		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	if (main_str[i] != '\0')
 	{
-		result = result * 10 + (str[i] - '0');
+		main_str[i] = '\0';
 		i++;
 	}
-	if (is_negative)
-		result = -result;
-	return (result);
+	main_str += i;
+	return (part);
 }

@@ -6,11 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 00:57:40 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 12:12:21 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:17:09 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/not_libft.h"
+#include "includes/libft_not.h"
 
 static void	add_into_buffer(long n, char *buffer)
 {

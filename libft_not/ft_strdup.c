@@ -6,11 +6,11 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 17:21:54 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 12:12:42 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 16:17:23 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/not_libft.h"
+#include "includes/libft_not.h"
 
 char	*ft_strdup(const char *str)
 {
