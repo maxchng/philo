@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:48:41 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 07:23:58 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 23:00:06 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
-	philo->last_meal_time = get_elapsed_time(start_time);
 	write_activity(philo, "eating", start_time);
+	philo->last_meal_time = get_elapsed_time(start_time);
 	pthread_mutex_lock(philo->shared_stats->eating_counter_mutex);
 	philo->eating_counter++;
 	pthread_mutex_unlock(philo->shared_stats->eating_counter_mutex);
@@ -71,6 +71,8 @@ void	*philo_lifecycle(void *arg)
 
 	philo = (t_philo_info *)arg;
 	start_time = philo->shared_stats->start_time;
+	if (philo->position % 2 == 0)
+		custom_usleep(philo->shared_config->time_to_eat);
 	while (1)
 	{
 		acquire_forks(philo, start_time);
