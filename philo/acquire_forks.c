@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:50:02 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/03 23:04:00 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 23:41:13 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 // 	pthread_mutex_lock(&philo->shared_stats->fork_mutexes[fork_index]);
 // 	elapsed_time = get_elapsed_time(start_time) - philo->last_meal_time;
 // 	if (elapsed_time > philo->shared_config->time_to_die)
-// 		write_activity(philo, "died", start_time);
+// 		log_activity(philo, "died", start_time);
 // 	else
-// 		write_activity(philo, "fork", start_time);
+// 		log_activity(philo, "fork", start_time);
 // }
 
 // static void	acquire_fork_even(t_philo_info *philo, struct timeval start_time)
@@ -36,7 +36,7 @@
 // 	next_fork_index = (pos + 1) % num_of_philos;
 // 	if (num_of_philos == 1)
 // 	{
-// 		write_activity(philo, "died", start_time);
+// 		log_activity(philo, "died", start_time);
 // 		pthread_exit(0);
 // 	}
 // 	acquire_fork(philo, pos, start_time);
@@ -83,33 +83,41 @@
 static void	acquire_left_fork(t_philo_info *philo, struct timeval start_time)
 {
 	size_t	left_fork;
+	bool	stop_print;
 
 	left_fork = philo->position;
 	pthread_mutex_lock(&philo->shared_stats->fork_mutexes[left_fork]);
-	write_activity(philo, "fork", start_time);
+	pthread_mutex_lock(philo->shared_stats->stop_printing_mutex);
+	stop_print = philo->shared_stats->stop_printing;
+	pthread_mutex_unlock(philo->shared_stats->stop_printing_mutex);
 	if (philo->shared_stats->stop_printing)
 	{
-		write_activity(philo, "died", start_time);
+		log_activity(philo, "died", start_time);
 		pthread_mutex_unlock(&philo->shared_stats->fork_mutexes[left_fork]);
 		pthread_exit(0);
 	}
+	log_activity(philo, "fork", start_time);
 }
 
 static void	acquire_right_fork(t_philo_info *philo, struct timeval start_time)
 {
 	size_t	left_fork;
 	size_t	right_fork;
+	bool	stop_print;
 
 	left_fork = philo->position;
 	right_fork = (philo->position + 1) % philo->shared_config->num_of_philos;
 	pthread_mutex_lock(&philo->shared_stats->fork_mutexes[right_fork]);
-	write_activity(philo, "fork", start_time);
-	if (philo->shared_stats->stop_printing)
+	pthread_mutex_lock(philo->shared_stats->stop_printing_mutex);
+	stop_print = philo->shared_stats->stop_printing;
+	pthread_mutex_unlock(philo->shared_stats->stop_printing_mutex);
+	if (stop_print)
 	{
-		write_activity(philo, "died", start_time);
+		log_activity(philo, "died", start_time);
 		release_forks(philo);
 		pthread_exit(0);
 	}
+	log_activity(philo, "fork", start_time);
 }
 
 void	acquire_forks(t_philo_info *philo, struct timeval start_time)

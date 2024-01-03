@@ -20,7 +20,7 @@ SRCS := philo.c \
 		philo_lifecycle.c \
 		acquire_forks.c \
 		release_forks.c \
-		activity_log.c \
+		log_activity.c \
 		time_utils.c \
 		cleanup.c
 

@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:25:23 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/03 22:41:17 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 23:44:24 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	monitor_threads(t_philo_info *philos, size_t num_of_philos)
 	size_t	i;
 	size_t	time_since_last_meal;
 
+	custom_usleep(philos[0].shared_config->time_to_eat);
 	while (1)
 	{
 		i = 0;
@@ -92,5 +93,6 @@ void	monitor_threads(t_philo_info *philos, size_t num_of_philos)
 			}
 			i++;
 		}
+		usleep(50);
 	}
 }

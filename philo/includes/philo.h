@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/03 22:28:06 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/03 23:18:55 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void	manage_threads(t_philo_info *philos, size_t num_of_philos);
 // monitor_threads.c
 void	monitor_threads(t_philo_info *philos, size_t num_of_philos);
 
-// activity_log.c
-void	write_activity(t_philo_info *philo, char *activity,
+// log_activity.c
+void	log_activity(t_philo_info *philo, char *activity,
 			struct timeval start_time);
 
 // time_utils.c
