@@ -13,7 +13,9 @@ SRCS := philo.c \
 		validate_input.c \
 		set_info.c \
 		handle_threads.c \
-		simulation.c
+		simulation.c \
+		gtab_forks.c \
+		time_utils.c
 
 # parse_argv.c \
 # setup_stats.c \

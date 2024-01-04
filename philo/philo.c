@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:54:34 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/04 17:08:29 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/04 19:39:49 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,11 @@ void	init_info(t_philo_info *info, char **argv)
 	set_info(info, argv);
 }
 
-void	init_main(t_philo_main *main, t_philo_info *info, t_philo_share *share)
-{
-	main->info = info;
-	main->share = share;
-}
-
 int	main(int argc, char **argv)
 {
 	t_philo_info	info;
 	t_philo_share	share;
-	t_philo_main	main;
+	t_philo_threads	*threads;
 
 	if (argc != 5 && argc != 6)
 	{
@@ -43,6 +37,5 @@ int	main(int argc, char **argv)
 		exit(-1);
 	}
 	init_info(&info, argv);
-	init_main(&main, &info, &share);
-	handle_threads(&main);
+	handle_threads(&threads, &info, &share);
 }

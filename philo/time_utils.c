@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulation.c                                       :+:      :+:    :+:   */
+/*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 17:30:26 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/04 20:17:54 by ychng            ###   ########.fr       */
+/*   Created: 2024/01/04 17:59:28 by ychng             #+#    #+#             */
+/*   Updated: 2024/01/04 19:56:51 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-void	*simulation(void *arg)
+int	get_time(void)
 {
-	t_philo_threads	*threads;
+	struct timeval	start_time;
 
-	threads = (t_philo_threads *)threads;
-	while (1)
-	{
-		grab_forks(threads);
-	}
-	pthread_exit(0);
+	gettimeofday(&start_time, NULL);
+	return ((start_time.tv_sec * 1000) + (start_time.tv_usec / 1000));
 }
