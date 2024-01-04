@@ -10,19 +10,21 @@ OBJS_PATH := ./objs/
 
 # Source files
 SRCS := philo.c \
-		parse_argv.c \
-		setup_stats.c \
-		is_valid_input.c \
-		set_config.c \
-		create_philos.c \
-		manage_threads.c \
-		monitor_threads.c \
-		philo_lifecycle.c \
-		acquire_forks.c \
-		release_forks.c \
-		activity_log.c \
-		time_utils.c \
-		cleanup.c
+		validate_input.c \
+		set_info.c
+# parse_argv.c \
+# setup_stats.c \
+# is_valid_input.c \
+# set_config.c \
+# create_philos.c \
+# manage_threads.c \
+# monitor_threads.c \
+# philo_lifecycle.c \
+# acquire_forks.c \
+# release_forks.c \
+# activity_log.c \
+# time_utils.c \
+# cleanup.c
 
 # Object files
 OBJS := $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
@@ -32,7 +34,7 @@ LIBFT_NOT_MAKE := $(MAKE) -C$(LIBFT_NOT_PATH)
 
 # Compiler and flags
 CC := cc
-# CFLAGS := -Wall -Werror -Wextra -fsanitize=thread
+CFLAGS := -Wall -Werror -Wextra -fsanitize=thread
 
 # Include flags, for the compiler to find additional header files
 INCLUDE_SYS_HEADERS := -I$(SYS_HEADERS_PATH)
