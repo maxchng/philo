@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:54:34 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/09 04:56:18 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 05:27:49 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	init_mutex(t_philo_share *share, t_philo_info *info)
 	}
 	i = 0;
 	while (i < info->no_of_philos)
-		pthread_mutex_init(&share->forks[i++], NULL);	
+		pthread_mutex_init(&share->forks[i++], NULL);
+	pthread_mutex_init(&share->print, NULL);	
 }
 
 void	init_share(t_philo_share *share, t_philo_info *info)

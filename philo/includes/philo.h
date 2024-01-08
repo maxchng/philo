@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/09 05:03:19 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 05:23:06 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ typedef struct s_philo_info
 typedef struct s_philo_share
 {
 	bool			stop_printing;
-	int				start_time;
+	int64_t			start_time;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
 }	t_philo_share;
 
 typedef struct s_philo_threads
@@ -60,6 +61,9 @@ void	grab_forks(t_philo_threads *threads);
 void	release_forks(t_philo_threads *threads);
 
 // time_utils.c
-int		get_time(void);
+int64_t	get_time(void);
+
+// print_activity.c
+void	print_activity(char *activity, t_philo_threads *threads);
 
 #endif

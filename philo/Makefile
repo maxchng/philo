@@ -16,7 +16,8 @@ SRCS := philo.c \
 		simulation.c \
 		grab_forks.c \
 		release_forks.c \
-		time_utils.c
+		time_utils.c \
+		print_activity.c
 
 # parse_argv.c \
 # setup_stats.c \
