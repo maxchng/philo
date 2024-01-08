@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_utils.c                                       :+:      :+:    :+:   */
+/*   start_eating.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 17:59:28 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/09 05:38:57 by ychng            ###   ########.fr       */
+/*   Created: 2024/01/09 05:30:54 by ychng             #+#    #+#             */
+/*   Updated: 2024/01/09 05:32:27 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-int64_t	get_time(void)
+void	start_eating(t_philo_threads *threads)
 {
-	struct timeval	current_time;
-	int64_t			miliseconds;
-
-	gettimeofday(&current_time, NULL);
-	miliseconds = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
-	return (miliseconds);
-}
-
-void	custom_usleep(int time)
-{
-	int64_t	start_of_this_function;
-
-	start_of_this_function = get_time();
-	while ((get_time() - start_of_this_function) < time)
-		usleep(50);
+	threads->last_ate_time = get_time();
+	print_activity("eat", threads);
 }
