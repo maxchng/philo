@@ -14,7 +14,8 @@ SRCS := philo.c \
 		set_info.c \
 		handle_threads.c \
 		simulation.c \
-		gtab_forks.c \
+		grab_forks.c \
+		release_forks.c \
 		time_utils.c
 
 # parse_argv.c \
@@ -39,7 +40,7 @@ LIBFT_NOT_MAKE := $(MAKE) -C$(LIBFT_NOT_PATH)
 
 # Compiler and flags
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -fsanitize=thread
+# CFLAGS := -Wall -Werror -Wextra -fsanitize=thread
 
 # Include flags, for the compiler to find additional header files
 INCLUDE_SYS_HEADERS := -I$(SYS_HEADERS_PATH)
