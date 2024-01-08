@@ -6,18 +6,20 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:00:40 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/04 20:29:28 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 04:21:24 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-static void	alloc_threads_struct(t_philo_threads **threads)
+static void	alloc_threads_struct(t_philo_threads **threads, t_philo_info *info,
+	t_philo_share *share)
 {
-	*threads = malloc(sizeof(t_philo_threads) * (*threads)->info->no_of_philos);
-	if (!*threads)
+	*threads = malloc(sizeof(t_philo_threads) * info->no_of_philos);
+	if (!(*threads))
 	{
 		// FREE SHARE
+		free(share->forks);
 		printf("malloc failed at *threads\n");
 		exit(-1);
 	}
@@ -62,18 +64,19 @@ static void	join_threads(pthread_t *tids, int no_of_philos)
 void	handle_threads(t_philo_threads **threads,
 	t_philo_info *info, t_philo_share *share)
 {
-	pthread_t	*tids;
+	// pthread_t	*tids;
 
-	alloc_threads_struct(threads);
-	init_threads_struct(threads, info, share);
-	tids = malloc(sizeof(pthread_t) * info->no_of_philos);
-	if (!tids)
-	{
-		free(*threads);
-		printf("malloc failed at tid\n");
-		exit(-1);
-	}
-	create_threads(threads, tids);
-	join_threads(tids, info->no_of_philos);
-	free(tids);
+	alloc_threads_struct(threads, info, share);
+	// init_threads_struct(threads, info, share);
+	// tids = malloc(sizeof(pthread_t) * info->no_of_philos);
+	// if (!tids)
+	// {
+	// 	free(*threads);
+	// 	printf("malloc failed at tid\n");
+	// 	exit(-1);
+	// }
+	// create_threads(threads, tids);
+	// monitor_threads(threads);
+	// join_threads(tids, info->no_of_philos);
+	// free(tids);
 }

@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:51:56 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/04 16:16:55 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 04:05:49 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	validate_input(char **argv)
 		input_segment = ft_strtok(arg_copy, " ");
 		while (input_segment)
 		{
-			if (is_valid_input(input_segment, i))
+			if (!is_valid_input(input_segment, i))
 			{
 				free(arg_copy);
 				exit(-1);

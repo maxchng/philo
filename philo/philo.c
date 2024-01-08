@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:54:34 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/04 19:39:49 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 04:10:14 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,27 @@ void	init_info(t_philo_info *info, char **argv)
 {
 	validate_input(argv);
 	set_info(info, argv);
+}
+
+static void	init_mutex(t_philo_share *share, t_philo_info *info)
+{
+	int	i;
+
+	i = 0;
+	share->forks = malloc(sizeof(t_philo_share) * info->no_of_philos);
+	if (!share->forks)
+	{
+		printf("malloc failed at share=>forks\n");
+		exit(-1);
+	}
+	while (i < info->no_of_philos)
+		pthread_mutex_init(&share->forks[i++], NULL);
+}
+
+void	init_share(t_philo_share *share, t_philo_info *info)
+{
+	share->stop_printing = false;
+	init_mutex(share, info);
 }
 
 int	main(int argc, char **argv)
@@ -37,5 +58,6 @@ int	main(int argc, char **argv)
 		exit(-1);
 	}
 	init_info(&info, argv);
+	init_share(&share, &info);
 	handle_threads(&threads, &info, &share);
 }
