@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/09 05:39:10 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 12:12:07 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ void	*simulation(void *arg);
 // grab_forks.c
 void	grab_forks(t_philo_threads *threads);
 
-// start_eating.c
+// start_activity.c
 void	start_eating(t_philo_threads *threads);
+void	start_sleeping(t_philo_threads *threads);
+void	start_thinking(t_philo_threads *threads);
+void	start_die(t_philo_threads *threads);
 
 // release_forks.c
 void	release_forks(t_philo_threads *threads);

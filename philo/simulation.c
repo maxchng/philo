@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:30:26 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/09 05:39:01 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 12:26:55 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	*simulation(void *arg)
 		grab_forks(threads);
 		start_eating(threads);
 		release_forks(threads);
+		start_sleeping(threads);
+		start_thinking(threads);
 	}
 	pthread_exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 17:00:40 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/09 04:59:57 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/09 12:29:18 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	create_threads(t_philo_threads **threads, pthread_t *tids)
 	while (i < (*threads)[0].info->no_of_philos)
 	{
 		(*threads)[i].position = i;
+		(*threads)[i].last_ate_time = (*threads)[0].share->start_time;
 		pthread_create(&tids[i], NULL, simulation, (void *)&(*threads)[i]);
 		i++;
 	}
@@ -56,14 +57,22 @@ static void	create_threads(t_philo_threads **threads, pthread_t *tids)
 static void	monitor_threads(t_philo_threads **threads)
 {
 	int	i;
+	int	time_since_last_meal;
 
+	custom_usleep(threads[0]->info->time_to_eat);
 	while (1)
 	{
 		i = 0;
 		while (i < threads[0]->info->no_of_philos)
 		{
-			if ((get_time() - threads[i]->last_ate_time) > threads[0]->info->time_to_die)
-				threads[0]->share->stop_printing = true;
+			printf("%d\n", threads[i]->last_ate_time);
+			time_since_last_meal = (get_time() - threads[i]->last_ate_time);
+			if (time_since_last_meal > threads[0]->info->time_to_die)
+			{
+		// 		threads[0]->share->stop_printing = true;
+		// 		print_activity("die", threads[i]);
+				return ;
+			}
 			i++;
 		}
 	}
@@ -92,8 +101,8 @@ void	handle_threads(t_philo_threads **threads,
 		printf("malloc failed at tid\n");
 		exit(-1);
 	}
-	create_threads(threads, tids);
-	// monitor_threads(threads);
+	// create_threads(threads, tids);
+	monitor_threads(threads);
 	join_threads(tids, info->no_of_philos);
 	free(tids);
 }

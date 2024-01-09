@@ -15,7 +15,7 @@ SRCS := philo.c \
 		handle_threads.c \
 		simulation.c \
 		grab_forks.c \
-		start_eating.c \
+		start_activity.c \
 		release_forks.c \
 		time_utils.c \
 		print_activity.c
