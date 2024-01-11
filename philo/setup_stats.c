@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 16:16:31 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 03:13:51 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 18:04:23 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	setup_stats(t_philo_stats *stats, t_philo_config config)
 	if (!init_mutex(&stats->fork_mutexes, config.num_of_philos)
 		|| !init_mutex(&stats->log_mutex, 1)
 		|| !init_mutex(&stats->stop_printing_mutex, 1)
-		|| !init_mutex(&stats->eating_counter_mutex, 1))
+		|| !init_mutex(&stats->eating_counter_mutex, 1)
+		|| !init_mutex(&stats->last_meal_time_mutex, config.num_of_philos))
 	{
 		free_mutexes(stats);
 		exit(-1);

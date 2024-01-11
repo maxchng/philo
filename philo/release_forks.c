@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:51:08 by ychng             #+#    #+#             */
-/*   Updated: 2023/12/29 03:01:49 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 18:07:25 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,5 @@ void	release_forks(t_philo_info *philo)
 	pos = philo->position;
 	num_of_philos = philo->shared_config->num_of_philos;
 	next_fork_index = (pos + 1) % num_of_philos;
-	if (philo->position % 2 == 0)
-		unlock_forks(philo, pos, next_fork_index);
-	else
-		unlock_forks(philo, next_fork_index, pos);
+	unlock_forks(philo, pos, next_fork_index);
 }

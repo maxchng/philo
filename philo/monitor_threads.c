@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:25:23 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/09 22:17:32 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 18:03:44 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	monitor_threads(void *arg)
 {
 	t_philo_info	*philos;
 	size_t			i;
+	size_t			last_meal_time;
 
 	philos = (t_philo_info *)arg;
 	while (1)
@@ -55,7 +56,10 @@ void	monitor_threads(void *arg)
 		i = 0;
 		while (i < philos[0].shared_config->num_of_philos)
 		{
-			if ((get_elapsed_time(philos[0].shared_stats->start_time) - philos[i].last_meal_time) > philos[0].shared_config->time_to_die)
+			pthread_mutex_lock(&philos[0].shared_stats->last_meal_time_mutex[i]);
+			last_meal_time = philos[i].last_meal_time;
+			pthread_mutex_unlock(&philos[0].shared_stats->last_meal_time_mutex[i]);
+			if ((get_elapsed_time(philos[0].shared_stats->start_time) - last_meal_time) > philos[0].shared_config->time_to_die)
 			{
 				write_activity(&philos[i], "died", philos[0].shared_stats->start_time);
 				pthread_mutex_lock(philos[0].shared_stats->stop_printing_mutex);
