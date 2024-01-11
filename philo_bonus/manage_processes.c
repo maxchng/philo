@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:05:12 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/11 21:39:49 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 23:29:29 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,12 @@ static void	create_processes(t_philo_info *philo, size_t num_of_philos)
 static void	create_threads(t_philo_info *philo)
 {
 	pthread_t	eat;
-	pthread_t	kill;
 
 	if (philo->shared_config->num_of_times_to_eat != 0)
 	{
 		pthread_create(&eat, NULL, monitor_eat_count, (void *)philo);
 		pthread_detach(eat);
 	}
-	pthread_create(&kill, NULL, start_kill, (void *)philo);
-	pthread_join(kill, NULL);
 }
 
 void	manage_processes(t_philo_info *philo, size_t num_of_philos)
@@ -56,6 +53,7 @@ void	manage_processes(t_philo_info *philo, size_t num_of_philos)
 
 	create_processes(philo, num_of_philos);
 	create_threads(philo);
+	start_kill((void *)philo);
 	i = num_of_philos;
 	while (i--)
 		waitpid(-1, NULL, 0);

@@ -6,13 +6,13 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:16 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/11 22:36:31 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 23:28:30 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo_bonus.h"
 
-void	*start_kill(void *arg)
+void	start_kill(void *arg)
 {
 	t_philo_info	*philo;
 	size_t			i;
@@ -28,5 +28,4 @@ void	*start_kill(void *arg)
 		i++;
 	}
 	sem_post(philo->shared_stats->start_kill_sem);
-	pthread_exit(0);
 }
