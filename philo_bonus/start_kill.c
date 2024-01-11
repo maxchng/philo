@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:49:16 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/02 03:57:15 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 22:35:39 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	*start_kill(void *arg)
 	sem_wait(philo->shared_stats->start_kill_sem);
 	while (i < philo->shared_config->num_of_philos)
 	{
+		if (philo->shared_config->num_of_times_to_eat != 0)
+			sem_post(philo->shared_stats->eating_counter_sem);
 		kill(philo->shared_stats->pids[i], SIGTERM);
 		i++;
 	}
