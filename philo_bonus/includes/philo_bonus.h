@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:08:29 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/03 16:23:52 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 21:39:04 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_philo_config
 typedef struct s_philo_stats
 {
 	pid_t			*pids;
-	sem_t			**fork_sems;
+	sem_t			*fork_sems;
 	sem_t			*log_sem;
 	sem_t			*eating_counter_sem;
 	sem_t			*stop_simulation_sem;
@@ -80,8 +80,6 @@ void	run_simulation(t_philo_info *philo);
 void	acquire_forks(t_philo_info *philo, struct timeval start_time);
 
 // release_forks.c
-void	unlock_forks(t_philo_info *philo, size_t fork1,
-			size_t fork2);
 void	release_forks(t_philo_info *philo);
 
 // write_activity.c
@@ -93,6 +91,6 @@ void	custom_usleep(size_t activity_time);
 size_t	get_elapsed_time(struct timeval start_time);
 
 // cleanup.c
-void	cleanup(t_philo_info *philo, size_t num_of_philos);
+void	cleanup(t_philo_info *philo);
 
 #endif
