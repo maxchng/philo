@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:48:41 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/11 18:06:47 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 18:28:14 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 static void	handle_eating(t_philo_info *philo, struct timeval start_time)
 {
-	pthread_mutex_lock(&philo->shared_stats->last_meal_time_mutex[philo->position]);
+	size_t	pos;
+
+	pos = philo->position;
+	pthread_mutex_lock(&philo->shared_stats->last_meal_time_mutex[pos]);
 	philo->last_meal_time = get_elapsed_time(start_time);
-	pthread_mutex_unlock(&philo->shared_stats->last_meal_time_mutex[philo->position]);
+	pthread_mutex_unlock(&philo->shared_stats->last_meal_time_mutex[pos]);
 	write_activity(philo, "eating", start_time);
 	pthread_mutex_lock(philo->shared_stats->eating_counter_mutex);
 	philo->eating_counter++;
@@ -73,8 +76,8 @@ void	*philo_lifecycle(void *arg)
 
 	philo = (t_philo_info *)arg;
 	start_time = philo->shared_stats->start_time;
-	if (philo->position % 2 == 1)
-		custom_usleep(100);		
+	if (philo->position % 2 == 0)
+		custom_usleep(100);
 	while (1)
 	{
 		acquire_forks(philo, start_time);

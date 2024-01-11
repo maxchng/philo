@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:25:23 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/11 18:03:44 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/11 18:49:03 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,42 @@
 // 	return (false);
 // }
 
+static int	check_philo_last_meal_time(t_philo_info	*philos)
+{
+	struct timeval	start_time;
+	size_t			last_meal_time;
+	size_t			i;
+	size_t			elapsed_time;
+	size_t			time_since_last_meal;
+
+	start_time = philos[0].shared_stats->start_time;
+	i = 0;
+	while (i < philos[0].shared_config->num_of_philos)
+	{
+		pthread_mutex_lock(&philos[0].shared_stats->last_meal_time_mutex[i]);
+		last_meal_time = philos[i].last_meal_time;
+		pthread_mutex_unlock(&philos[0].shared_stats->last_meal_time_mutex[i]);
+		elapsed_time = get_elapsed_time(start_time);
+		time_since_last_meal = (elapsed_time - last_meal_time);
+		if (time_since_last_meal > philos[0].shared_config->time_to_die)
+		{
+			write_activity(&philos[i], "died", start_time);
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 void	monitor_threads(void *arg)
 {
 	t_philo_info	*philos;
-	size_t			i;
-	size_t			last_meal_time;
 
 	philos = (t_philo_info *)arg;
 	while (1)
 	{
-		i = 0;
-		while (i < philos[0].shared_config->num_of_philos)
-		{
-			pthread_mutex_lock(&philos[0].shared_stats->last_meal_time_mutex[i]);
-			last_meal_time = philos[i].last_meal_time;
-			pthread_mutex_unlock(&philos[0].shared_stats->last_meal_time_mutex[i]);
-			if ((get_elapsed_time(philos[0].shared_stats->start_time) - last_meal_time) > philos[0].shared_config->time_to_die)
-			{
-				write_activity(&philos[i], "died", philos[0].shared_stats->start_time);
-				pthread_mutex_lock(philos[0].shared_stats->stop_printing_mutex);
-				philos[0].shared_stats->stop_printing = true;
-				pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
-				return ;
-			}
-			i++;
-		}
+		if (check_philo_last_meal_time(philos) == -1)
+			return ;
 		usleep(50);
 	}
 }

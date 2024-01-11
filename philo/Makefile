@@ -32,7 +32,7 @@ LIBFT_NOT_MAKE := $(MAKE) -C$(LIBFT_NOT_PATH)
 
 # Compiler and flags
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -fsanitize=thread -g3
+CFLAGS := -Wall -Werror -Wextra #-fsanitize=thread -g3
 
 # Include flags, for the compiler to find additional header files
 INCLUDE_SYS_HEADERS := -I$(SYS_HEADERS_PATH)
