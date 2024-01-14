@@ -6,7 +6,7 @@
 /*   By: ychng <ychng@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 02:25:23 by ychng             #+#    #+#             */
-/*   Updated: 2024/01/11 21:06:03 by ychng            ###   ########.fr       */
+/*   Updated: 2024/01/14 18:57:57 by ychng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,24 @@ static bool	check_exit_condition(t_philo_info *philo)
 static bool	check_eating_counter(t_philo_info *philos)
 {
 	size_t	i;
+	size_t	counter;
 	size_t	num_of_philos;
 
 	i = 0;
+	counter = 0;
 	num_of_philos = philos[0].shared_config->num_of_philos;
 	while (i < num_of_philos)
 	{
 		if (check_exit_condition(&philos[i]))
-		{
-			pthread_mutex_lock(philos[0].shared_stats->stop_printing_mutex);
-			philos[0].shared_stats->stop_printing = true;
-			pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
-			return (true);
-		}
+			counter++;
 		i++;
+	}
+	if (counter == num_of_philos)
+	{
+		pthread_mutex_lock(philos[0].shared_stats->stop_printing_mutex);
+		philos[0].shared_stats->stop_printing = true;
+		pthread_mutex_unlock(philos[0].shared_stats->stop_printing_mutex);
+		return (true);
 	}
 	return (false);
 }
